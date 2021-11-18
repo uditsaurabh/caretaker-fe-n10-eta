@@ -1,0 +1,55 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 70% 20%;
+  gap: 2%;
+
+  .graph {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    span {
+      font-weight: 400;
+    }
+
+    p {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .test-name {
+    padding: 0px 20px;
+    h1 {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+    }
+
+    .test-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      letter-spacing: 0.5px;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        background: linear-gradient(60deg, #dc4405, #e05e29);
+        color: #fff;
+        font-weight: 500;
+      }
+    }
+
+    .active {
+      background: linear-gradient(60deg, #dc4405, #e05e29);
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+  }
+}
