@@ -9,7 +9,6 @@ import {
   DeleteOutlined,
   QrcodeOutlined,
 } from "@ant-design/icons";
-import { getProfileData } from "../../util/profiles";
 import { getProfiles } from "../../redux/userActions";
 import { defaultImage } from "../user/constant";
 import User from "../user";
@@ -22,7 +21,6 @@ const Profiles = ({ token }) => {
   const { userProfiles } = useSelector((state) => state.userReducer);
   const [addProfile, setAddProfile] = useState(false);
   const [profile, setProfile] = useState(userProfiles[0]);
-  console.log(userProfiles);
 
   const closeProfile = () => {
     setAddProfile(false);
@@ -72,7 +70,7 @@ const Profiles = ({ token }) => {
   useEffect(() => {
     getData();
     return () => null;
-  }, []);
+  }, [getData]);
 
   const { name, age, blood_group, gender, disease } =
     profile?.profile_details || "";
@@ -145,7 +143,7 @@ const Profiles = ({ token }) => {
               <div className="qr-code">
                 <QrcodeOutlined />
               </div>
-              <a href={qr_code} target="_blank">
+              <a href={qr_code} rel="noreferrer" target="_blank">
                 <OrangeButton
                   text="Download"
                   type="orange-button"

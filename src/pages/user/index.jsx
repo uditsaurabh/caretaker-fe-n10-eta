@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Upload, Button, Avatar } from "antd";
+import { Upload, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import OrangeButton from "../../common/button";
 import CommonCard from "../../common/card";
@@ -13,7 +13,6 @@ const User = ({ addProfile, closeProfile }) => {
   const history = useNavigate();
   const [userDetail, setUserDetail] = useState({});
   const [fileList, setFileList] = useState([]);
-  const [FileSend, setFileSend] = useState([]);
   const [imageList, setImageList] = useState([]);
 
   const handleChange = (node, val) => {
@@ -64,24 +63,6 @@ const User = ({ addProfile, closeProfile }) => {
       newList.push(file);
       setFileList(newList);
       return false;
-    },
-    onChange(info) {
-      const listFiles = info.fileList.slice(-3);
-
-      const newArrayFiles = listFiles.map((file) =>
-        file.originFileObj ? file.originFileObj : file
-      );
-
-      const anAsyncFunction = async (item) => {
-        return convertBase64(item);
-      };
-
-      const getData = async () => {
-        return Promise.all(newArrayFiles.map((item) => anAsyncFunction(item)));
-      };
-      getData().then((data) => {
-        setFileSend(data);
-      });
     },
     multiple: true,
     fileList: fileList,

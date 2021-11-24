@@ -2,7 +2,6 @@ import React from "react";
 import { line, zoom } from "billboard.js";
 import BillboardChart from "react-billboardjs";
 import "billboard.js/dist/theme/insight.css";
-import moment from "moment";
 
 let data = {
   columns: [
