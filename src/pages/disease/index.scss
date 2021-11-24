@@ -1,0 +1,126 @@
+.disease {
+  display: grid;
+  grid-template-columns: 70% 20%;
+  gap: 2%;
+  position: relative;
+
+  h1 {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+  }
+
+  .user-request {
+    padding: 0 20px;
+    flex-direction: column;
+
+    .requests {
+      margin-top: 3%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      max-height: 350px;
+      display: grid;
+      grid-template-columns: 48% 47%;
+      column-gap: 5%;
+      row-gap: 20px;
+
+      .request-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        background: rgba($color: #c4c4c4, $alpha: 0.5);
+        border-radius: 4px;
+        padding: 4px;
+        cursor: pointer;
+
+        .info {
+          justify-content: flex-start;
+          margin-left: 20px;
+          p {
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+          }
+        }
+
+        .icons {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          gap: 30px;
+          font-size: 20px;
+          padding: 4px;
+          margin-right: 10px;
+          span {
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .add {
+    padding: 0 20px;
+    flex-direction: column;
+    text-align: center;
+
+    .disease-list {
+      text-align: left;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      max-height: 230px;
+    }
+
+    input,
+    button {
+      margin-top: 8%;
+    }
+  }
+
+  .resolve {
+    z-index: 5;
+    position: fixed;
+    width: 30%;
+    height: 40%;
+    top: 20%;
+    left: 30%;
+    background: rgba($color: #c4c4c4, $alpha: 1);
+    border-radius: 4px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    select {
+      background: var(--white);
+      outline: none;
+
+      option:hover {
+        background: #dc9905;
+      }
+    }
+
+    .close-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 18px;
+
+      &:hover {
+        opacity: 0.3;
+      }
+    }
+  }
+}

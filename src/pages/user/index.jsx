@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-import OrangeButton from "../../components/common/button";
-import CommonCard from "../../components/common/card";
-import TextInput from "../../components/common/input";
-import secureAxios from "../../services/http";
-import axios from "axios";
-import { CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Upload, Button, Avatar } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
+import OrangeButton from "../../common/button";
+import CommonCard from "../../common/card";
+import TextInput from "../../common/input";
+import { bloodGroup, gender, defaultImage } from "./constant";
 import "./index.scss";
-
-const fileToDataUri = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      resolve(event.target.result);
-    };
-    reader.readAsDataURL(file);
-  });
 
 const User = ({ addProfile, closeProfile }) => {
   const history = useNavigate();
   const [userDetail, setUserDetail] = useState({});
-  const [reports, setReports] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const [FileSend, setFileSend] = useState([]);
+  const [imageList, setImageList] = useState([]);
 
   const handleChange = (node, val) => {
     let updateDetail = Object.assign({}, userDetail);
@@ -28,31 +22,24 @@ const User = ({ addProfile, closeProfile }) => {
     setUserDetail(updateDetail);
   };
 
-  const onFileChange = (event) => {
-    let files = event.target.files;
-    // const reader = new FileReader();
-    // reader.readAsDataURL(files[0]);
-    // reader.onload = (e) => {
-    //   setReports(e.target.result);
-    // };
-    // setReports(files[0]);
-
-    fileToDataUri(files[0]).then((dataUrl) => {
-      setReports(dataUrl);
-    });
-  };
-
-  const addNewMember = (reports) => {
-    const token = sessionStorage.getItem("user");
+  const addNewMember = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("user");
 
     const formData = new FormData();
     formData.append("access_token", token);
     Object.keys(userDetail).forEach((key) =>
       formData.append(key, userDetail[key])
     );
-    if (reports) {
-      formData.append("reports", [reports]);
-    }
+
+    fileList.forEach((file) => {
+      formData.append("reports", file);
+    });
+
+    imageList.forEach((file) => {
+      formData.append("profile_photo", file);
+    });
+
     axios({
       method: "post",
       url: "https://stark-island-21254.herokuapp.com/create_profile",
@@ -61,16 +48,77 @@ const User = ({ addProfile, closeProfile }) => {
         "content-type":
           "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
       },
+    }).then((res) => console.log(res));
+  };
+
+  const props = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+
+      return setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      let newList = fileList;
+      newList.push(file);
+      setFileList(newList);
+      return false;
+    },
+    onChange(info) {
+      const listFiles = info.fileList.slice(-3);
+
+      const newArrayFiles = listFiles.map((file) =>
+        file.originFileObj ? file.originFileObj : file
+      );
+
+      const anAsyncFunction = async (item) => {
+        return convertBase64(item);
+      };
+
+      const getData = async () => {
+        return Promise.all(newArrayFiles.map((item) => anAsyncFunction(item)));
+      };
+      getData().then((data) => {
+        setFileSend(data);
+      });
+    },
+    multiple: true,
+    fileList: fileList,
+    maxCount: 5,
+  };
+
+  const imageProps = {
+    onRemove: (file) => {
+      const index = imageList.indexOf(file);
+      const newFileList = imageList.slice();
+      newFileList.splice(index, 1);
+
+      return setImageList(newFileList);
+    },
+    beforeUpload: (file) => {
+      let newList = imageList;
+      newList.push(file);
+      setImageList(newList);
+      return false;
+    },
+    multiple: true,
+    imageList: imageList,
+    maxCount: 1,
+  };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader?.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
     });
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let res = await addNewMember(reports);
-    console.log(res.data);
-  };
-
-  console.log(reports);
 
   return (
     <div className="user">
@@ -80,19 +128,18 @@ const User = ({ addProfile, closeProfile }) => {
             <CloseOutlined onClick={closeProfile} />
           </div>
         )}
-        {/* <div > */}
         <form
-          onSubmit={handleSubmit}
+          onSubmit={addNewMember}
           className={addProfile ? "user-content profile" : "user-content"}
         >
           <div className="image-section">
-            <img
-              src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
-              alt="detail"
-            />
-            <OrangeButton text="Upload image" type="orange-button" />
-            <label htmlFor="upload-report">Upload reports</label>
-            <input type="file" id="upload-report" onChange={onFileChange} />
+            <img src={defaultImage} alt="detail" />
+            <Upload {...imageProps} className="dp">
+              <Button className="orange-button">Upload image</Button>
+            </Upload>
+            <Upload {...props}>
+              <Button className="orange-button">Upload reports</Button>
+            </Upload>
           </div>
           <div className="form-section">
             <TextInput
@@ -107,7 +154,28 @@ const User = ({ addProfile, closeProfile }) => {
               value={userDetail?.age}
               change={(e) => handleChange("age", e.target.value)}
             />
-            {/* <select
+            <TextInput
+              placeholder="Emergency contact"
+              color="grey"
+              value={userDetail?.emergencyContact}
+              change={(e) => handleChange("emergency_contact", e.target.value)}
+            />
+            <select
+              name="bloodGroup"
+              onChange={(e) => handleChange("blood_group", e.target.value)}
+              defaultValue="bloodGroup"
+              className="orange"
+            >
+              <option value="bloodGroup" disabled>
+                Blood Group
+              </option>
+              {bloodGroup.map((item, i) => (
+                <option value={item.value} key={i}>
+                  {item.value}
+                </option>
+              ))}
+            </select>
+            <select
               name="gender"
               onChange={(e) => handleChange("gender", e.target.value)}
               defaultValue="gender"
@@ -115,10 +183,12 @@ const User = ({ addProfile, closeProfile }) => {
               <option value="gender" disabled>
                 Gender
               </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select> */}
+              {gender.map((item, i) => (
+                <option value={item.value} key={i}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
             <select
               name="disease"
               onChange={(e) => handleChange("disease", e.target.value)}
@@ -132,21 +202,8 @@ const User = ({ addProfile, closeProfile }) => {
               <option value="cancer">Cancer</option>
               <option value="other">Other</option>
             </select>
-            <TextInput
-              placeholder="Blood group"
-              color="grey"
-              value={userDetail?.bloodGroup}
-              change={(e) => handleChange("blood_group", e.target.value)}
-            />
-            <TextInput
-              placeholder="Emergency contact"
-              color="grey"
-              value={userDetail?.emergencyContact}
-              change={(e) => handleChange("emergency_contact", e.target.value)}
-            />
           </div>
         </form>
-        {/* </div> */}
         <div className="save-button">
           <OrangeButton
             text="Save"

@@ -1,0 +1,105 @@
+.sidebar {
+  background-color: #001529;
+  color: var(--white);
+  height: 100vh;
+  width: 60px;
+  position: fixed;
+  top: 0;
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 99;
+
+  .background {
+    img {
+      height: 100vh;
+      width: 100%;
+      opacity: 20%;
+    }
+
+    .icons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      .logo {
+        border-bottom: 1px solid var(--white);
+        transform: matrix(1, 0.01, -0.01, 1, 0, 0);
+        width: 250px;
+        cursor: none;
+        display: flex;
+        align-items: center;
+        span {
+          position: relative;
+          display: block;
+          min-width: 60px;
+          height: 60px;
+          line-height: 60px;
+          text-align: center;
+          font-size: 24px;
+        }
+        h3 {
+          width: 100px;
+          margin-left: 5px;
+          letter-spacing: 2px;
+        }
+      }
+      .menu {
+        margin-top: 20px;
+
+        .nav {
+          text-decoration: none;
+          color: var(--white);
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          width: 240px;
+          height: 50px;
+          transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+          margin-left: 5px;
+          margin-top: 15px;
+
+          &:hover {
+            background: var(--orange-color);
+            border-radius: 4px;
+          }
+
+          span {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 24px;
+          }
+
+          p {
+            margin-left: 10px;
+            line-height: 30px;
+          }
+        }
+
+        .nav-active {
+          background: var(--orange-color);
+          border-radius: 4px;
+          width: 50px;
+          height: 50px;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    width: 250px;
+    .background {
+      .icons {
+        .menu {
+          .nav-active {
+            width: 240px;
+          }
+        }
+      }
+    }
+  }
+}

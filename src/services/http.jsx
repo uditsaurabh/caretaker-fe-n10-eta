@@ -1,10 +1,14 @@
 import axios from "axios";
 
+const url = process.env.REACT_APP_SERVER_URL;
 const secureAxios = axios.create({
-  baseURL: "https://stark-island-21254.herokuapp.com/",
+  baseURL: url,
   headers: {
-    "Content-Type": "multipart/form-data",
+    // "Content-Type": "multipart/form-data",
+    // "Access-Control-Allow-Origin": "*",
+    "Content-type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    Authorization: `Bearer ${localStorage.getItem("user")}`,
   },
 });
 

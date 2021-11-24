@@ -39,14 +39,14 @@
       border-radius: 4px;
       cursor: pointer;
       &:hover {
-        background: linear-gradient(60deg, #dc4405, #e05e29);
+        background: var(--orange-color);
         color: #fff;
         font-weight: 500;
       }
     }
 
     .active {
-      background: linear-gradient(60deg, #dc4405, #e05e29);
+      background: var(--orange-color);
       color: #fff;
       border-radius: 4px;
       font-weight: 500;

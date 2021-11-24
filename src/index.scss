@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgba(196, 196, 196, 0.5);
+}
+
+:root {
+  --orange-color: linear-gradient(60deg, #dc4405, #e05e29);
+  --grey-background: rgba($color: #c4c4c4, $alpha: 1);
+  --white: #fff;
+  --header-color: #00475d;
+  --black: #000;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-color: var(--white);
+  }
+}

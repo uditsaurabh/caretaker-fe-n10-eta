@@ -2,12 +2,6 @@
 
 * {
   font-family: "Poppins", sans-serif;
-
-  // option:hover {
-  //   // background-color: #dc4405 !important;
-  //   box-shadow: 0 0 10px 100px #dc4405 inset;
-  //   color: #fff;
-  // }
 }
 .app {
   .pages {
@@ -25,7 +19,7 @@ h1 {
 
 select {
   border-radius: 4px;
-  padding: 4px;
+  padding: 4px 8px;
   height: 40px;
   border: none;
   font-size: 16px;
@@ -33,8 +27,14 @@ select {
   overflow: hidden;
   background: rgba(196, 196, 196, 0.5);
   color: rgba(0, 0, 0, 0.5);
+}
 
-  &::after {
-    background: linear-gradient(60deg, #dc4405, #e05e29);
+@media (max-width: 600px) {
+  .app {
+    .pages {
+      top: 15%;
+      left: 10px;
+      width: 100%;
+    }
   }
 }
