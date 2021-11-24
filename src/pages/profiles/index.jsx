@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   UserAddOutlined,
@@ -18,6 +18,7 @@ import OrangeButton from "../../common/button/index";
 import "./index.scss";
 
 const Profiles = ({ token }) => {
+  const dispatch = useDispatch();
   const { userProfiles } = useSelector((state) => state.userReducer);
   const [addProfile, setAddProfile] = useState(false);
   const [profile, setProfile] = useState(userProfiles[0]);
@@ -58,15 +59,14 @@ const Profiles = ({ token }) => {
       });
   };
 
-  const getData = () => {
+  const getData = useCallback(() => {
     const token = localStorage.getItem("user");
     dispatch(getProfiles(token));
     if (userProfiles) {
       setProfile(userProfiles[0]);
     }
-  };
+  }, []);
 
-  const dispatch = useDispatch();
   useEffect(() => {
     getData();
     return () => null;

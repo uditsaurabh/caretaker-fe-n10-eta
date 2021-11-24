@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { UserOutlined } from "@ant-design/icons";
 import "./index.scss";
@@ -14,11 +14,11 @@ const Header = ({ handleLogout }) => {
     return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase();
   };
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = useCallback((e) => {
     if (!e.target.closest(`.${container.current.className}`) && open) {
       setOpen(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
