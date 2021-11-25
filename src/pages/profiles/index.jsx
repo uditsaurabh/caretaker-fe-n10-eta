@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   UserAddOutlined,
@@ -66,7 +66,7 @@ const Profiles = ({ token }) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, []); // eslint-disable-line
 
   const { name, age, blood_group, gender, disease } =
     profile?.profile_details || "";
