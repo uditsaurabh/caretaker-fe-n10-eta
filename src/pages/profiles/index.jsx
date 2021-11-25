@@ -59,15 +59,14 @@ const Profiles = ({ token }) => {
       });
   };
 
-  const getData = useCallback(() => {
+  const getData = () => {
     const token = localStorage.getItem("user");
     dispatch(getProfiles(token));
-  }, []);
+  };
 
   useEffect(() => {
     getData();
-    return () => null;
-  }, [getData]);
+  }, []);
 
   const { name, age, blood_group, gender, disease } =
     profile?.profile_details || "";
