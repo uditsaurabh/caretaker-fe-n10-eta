@@ -26,7 +26,7 @@ const Header = ({ handleLogout }) => {
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  });
 
   return (
     <div className="header">
