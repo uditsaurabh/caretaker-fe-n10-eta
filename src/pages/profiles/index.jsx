@@ -62,7 +62,7 @@ const Profiles = ({ token }) => {
   const getData = useCallback(() => {
     const token = localStorage.getItem("user");
     dispatch(getProfiles(token));
-  });
+  }, []);
 
   useEffect(() => {
     getData();
