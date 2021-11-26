@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import { UserOutlined } from "@ant-design/icons";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import "./Header.scss";
+import { UserOutlined } from "@ant-design/icons";
+import "./index.scss";
 
 const Header = ({ handleLogout }) => {
   const [open, setOpen] = useState(false);
@@ -14,16 +14,19 @@ const Header = ({ handleLogout }) => {
     return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase();
   };
 
-  const handleClickOutside = (e) => {
-    if (!e.target.closest(`.${container.current.className}`) && open) {
-      setOpen(false);
-    }
-  };
+  const handleClickOutside = useCallback(
+    (e) => {
+      if (!e.target.closest(`.${container.current.className}`) && open) {
+        setOpen(false);
+      }
+    },
+    [open]
+  );
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
-  }, [open]);
+  });
 
   return (
     <div className="header">

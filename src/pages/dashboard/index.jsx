@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CommonCard from "../../components/common/card";
+import CommonCard from "../../common/card";
+import LineChart from "./billboard";
 import "billboard.js/dist/theme/insight.css";
 import "./index.scss";
-import LineChart from "./billboard";
 
 const Dashboard = () => {
   const [testName, setTestName] = useState("Haemoglobin");

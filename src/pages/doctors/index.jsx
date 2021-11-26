@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import CommonCard from "../../components/common/card";
-import OrangeButton from "../../components/common/button/index";
-import TextInput from "../../components/common/input";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  UserAddOutlined,
+} from "@ant-design/icons";
+import CommonCard from "../../common/card";
+import OrangeButton from "../../common/button/index";
+import TextInput from "../../common/input";
+import axios from "axios";
+import AddDoctor from "./addDoctor";
 import "./index.scss";
 
-const Doctors = () => {
+const Doctors = ({ boarding }) => {
   const data = [
     {
       image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
@@ -42,30 +49,10 @@ const Doctors = () => {
       expertise: "Cardiologist",
       fees: "50",
     },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "ABCD",
-      experience: "6",
-      fees: "50",
-      expertise: "Neurologist",
-    },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "DEFG",
-      experience: "8",
-      fees: "50",
-      expertise: "Dermatologists",
-    },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "TUVW",
-      experience: "10",
-      fees: "50",
-      expertise: "Endocrinologists",
-    },
   ];
 
   const [doctor, setDoctor] = useState(data[0]);
+  const [addDoctor, setAddDoctor] = useState(false);
 
   const viewDoctor = (name) => {
     data.forEach((item) => {
@@ -75,13 +62,41 @@ const Doctors = () => {
     });
   };
 
+  const handleCloseDialog = () => {
+    setAddDoctor(false);
+  };
+
+  const handleCall = () => {
+    axios
+      .post(
+        "https://api.cluster.dyte.in/v1/organizations/10b2adc1-93a1-427a-a3b5-8b6d84a96c91/meeting",
+        { title: "Consultation", authorization: { waitingRoom: true } },
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "8bb9c4e4a9b1488f8435",
+          },
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="doctors">
       <CommonCard>
         <div className="doctor-list">
-          <div className="search-bar">
-            <TextInput placeholder="Search doctor..." />
-            <SearchOutlined />
+          <div className="doc-top">
+            <div className="search-bar">
+              <TextInput placeholder="Search doctor..." />
+              <SearchOutlined />
+            </div>
+            {boarding && (
+              <div className="add-doc">
+                <UserAddOutlined onClick={() => setAddDoctor(true)} />
+              </div>
+            )}
           </div>
           <div className="list-content">
             {data.map((item, i) => (
@@ -103,6 +118,12 @@ const Doctors = () => {
       </CommonCard>
       <CommonCard>
         <div className="doctor-info">
+          {boarding && (
+            <div className="board-icons">
+              <EditOutlined />
+              <DeleteOutlined />
+            </div>
+          )}
           <div className="details">
             <img
               src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
@@ -114,12 +135,21 @@ const Doctors = () => {
               <p>Experience - {doctor?.experience} years</p>
               <p>Fees - INR {doctor?.fees}/-</p>
             </div>
-            <hr />
-            <span className="note">For a consultation please pay fees</span>
-            <OrangeButton text="Pay" type="orange-button" />
+            {!boarding && (
+              <>
+                <hr />
+                <span className="note">For a consultation please pay fees</span>
+                <OrangeButton
+                  text="Pay"
+                  type="orange-button"
+                  click={handleCall}
+                />
+              </>
+            )}
           </div>
         </div>
       </CommonCard>
+      {addDoctor && <AddDoctor handleCloseDialog={handleCloseDialog} />}
     </div>
   );
 };

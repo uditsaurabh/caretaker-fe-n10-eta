@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import LoginImage from "../assets/login/landing.jpg";
-import OrangeButton from "../components/common/button";
-import { Input } from "antd";
-import TextInput from "../components/common/input";
-import { ReactComponent as Logo } from "../assets/icons/medical-device.svg";
 import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import firebaseApp from "../firebaseConfig";
-import "./Login.scss";
+import LoginImage from "../assets/login/landing.jpg";
+import OrangeButton from "../common/button";
+import TextInput from "../common/input";
+import { ReactComponent as Logo } from "../assets/icons/medical-device.svg";
+import "./index.scss";
 
-const Login = ({ checkUser }) => {
+const Login = ({ checkUser, setLoading, loading }) => {
   const [number, setNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [mobile, setMobile] = useState(true);
@@ -43,6 +41,7 @@ const Login = ({ checkUser }) => {
   const onSignInSubmit = (e) => {
     e.preventDefault();
     configureCaptcha();
+    setLoading(true);
 
     const auth = getAuth();
     const phoneNumber = "+91" + number;
@@ -52,6 +51,7 @@ const Login = ({ checkUser }) => {
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         setMobile(false);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -59,6 +59,7 @@ const Login = ({ checkUser }) => {
   };
 
   const handleOtpVerify = () => {
+    setLoading(true);
     const code = otp;
     window.confirmationResult
       .confirm(code)
@@ -99,13 +100,14 @@ const Login = ({ checkUser }) => {
                     : "orange-button"
                 }
                 click={onSignInSubmit}
+                loading={loading}
               />
               <div id="sign-in-button"></div>
             </>
           ) : (
             <div className="otp">
-              <Input
-                onChange={(e) => handleChange("otp", e.target.value)}
+              <TextInput
+                change={(e) => handleChange("otp", e.target.value)}
                 size="large"
                 placeholder="OTP"
                 maxLength={6}
@@ -119,6 +121,7 @@ const Login = ({ checkUser }) => {
                 }
                 text="Verify OTP"
                 click={handleOtpVerify}
+                loading={loading}
               />
             </div>
           )}

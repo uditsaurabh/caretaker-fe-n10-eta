@@ -64,7 +64,6 @@
         align-items: center;
         width: 98%;
         height: 100px;
-        background: rgba($color: #c4c4c4, $alpha: 1);
         border-radius: 4px;
         padding: 4px;
         cursor: pointer;
@@ -135,11 +134,6 @@
 
       .qr-code {
         margin-top: 15%;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 50%;
-        }
         span {
           font-size: 24px;
         }

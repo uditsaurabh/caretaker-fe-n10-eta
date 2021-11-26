@@ -9,21 +9,35 @@
     flex-direction: column;
     padding: 20px;
 
-    .search-bar {
+    .doc-top {
       display: flex;
       align-items: center;
-      border-radius: 4px;
-      background: rgba($color: #c4c4c4, $alpha: 1);
-      padding: 4px;
-      width: 40%;
-      input {
-        width: 100%;
-        background: inherit;
-      }
-
-      span {
+      justify-content: space-between;
+      .add-doc {
         font-size: 24px;
-        margin-right: 5px;
+        padding-right: 30px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        background: rgba($color: #c4c4c4, $alpha: 1);
+        padding: 4px;
+        width: 40%;
+        input {
+          width: 100%;
+          background: inherit;
+        }
+
+        span {
+          font-size: 24px;
+          margin-right: 5px;
+        }
       }
     }
     .list-content {
@@ -42,7 +56,6 @@
         align-items: center;
         width: 98%;
         height: 100px;
-        background: rgba($color: #c4c4c4, $alpha: 1);
         border-radius: 4px;
         padding: 4px;
         cursor: pointer;
@@ -60,7 +73,7 @@
         .info {
           justify-content: flex-start;
           margin-left: 15px;
-          background: rgba($color: #c4c4c4, $alpha: 1);
+          background: var(--grey-background);
 
           p {
             font-size: 12px;
@@ -105,6 +118,19 @@
       }
       button {
         margin-top: 30%;
+      }
+    }
+    .board-icons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      font-size: 18px;
+
+      span {
+        cursor: pointer;
+        &:hover {
+          opacity: 0.5;
+        }
       }
     }
   }

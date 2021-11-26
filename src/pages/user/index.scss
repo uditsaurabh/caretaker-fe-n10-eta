@@ -1,16 +1,17 @@
 .user {
   width: 92%;
+  position: relative;
 
   .close-icon {
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
-    font-size: 24px;
+    padding: 15px;
     cursor: pointer;
     height: 0px;
+    font-size: 24px;
 
     &:hover {
-      opacity: 50%;
+      opacity: 0.5;
     }
   }
   .user-content {
@@ -27,24 +28,32 @@
         height: 150px;
         width: 150px;
       }
-      label {
-        color: #fff;
-        width: 150px;
-        height: 30px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 14px;
-        text-align: center;
-        padding-top: 8px;
-        background: linear-gradient(60deg, #dc4405, #e05e29);
+      .dp {
+        .ant-upload-list {
+          display: none;
+        }
       }
+      .ant-upload-list {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        max-height: 150px;
 
-      #upload-report {
-        opacity: 0;
-        position: absolute;
-        z-index: -1;
+        .ant-upload-span {
+          width: 150px;
+          margin-top: 8px;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          font-size: 12px;
+          button {
+            background: var(--white);
+            border: none;
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
       }
     }
     .form-section {
@@ -58,10 +67,61 @@
     padding: 10px !important;
   }
   .save-button {
-    display: flex;
-    justify-content: flex-end;
-    position: static;
-    top: 80px;
+    position: absolute;
     right: 30px;
+    bottom: 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  .user-content {
+    grid-template-columns: 30% 50% !important;
+    gap: 10px !important;
+    margin: 0 10px !important;
+    img,
+    button {
+      width: 50%;
+    }
+    .form-section {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .user {
+    height: 660px !important;
+    width: 100% !important;
+    .user-content {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-direction: column !important;
+      gap: 20px !important;
+      justify-content: center !important;
+      width: 375px !important;
+      margin: 0 10px !important;
+      padding: 0 !important;
+      .image-section {
+        button {
+          width: 100%;
+        }
+      }
+      .form-section {
+        width: 50% !important;
+        flex-direction: column !important;
+        gap: 20px;
+
+        input,
+        select {
+          font-size: 12px !important;
+        }
+      }
+    }
+  }
+  .save-button {
+    position: absolute !important;
+    bottom: 0px !important;
+    right: 50% !important;
   }
 }

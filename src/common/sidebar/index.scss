@@ -1,6 +1,6 @@
 .sidebar {
   background-color: #001529;
-  color: #ffffff;
+  color: var(--white);
   height: 100vh;
   width: 60px;
   position: fixed;
@@ -21,7 +21,7 @@
       top: 0;
       left: 0;
       .logo {
-        border-bottom: 1px solid #ffffff;
+        border-bottom: 1px solid var(--white);
         transform: matrix(1, 0.01, -0.01, 1, 0, 0);
         width: 250px;
         cursor: none;
@@ -47,7 +47,7 @@
 
         .nav {
           text-decoration: none;
-          color: #ffffff;
+          color: var(--white);
           display: flex;
           align-items: center;
           cursor: pointer;
@@ -58,7 +58,7 @@
           margin-top: 15px;
 
           &:hover {
-            background: linear-gradient(60deg, #dc4405, #e05e29);
+            background: var(--orange-color);
             border-radius: 4px;
           }
 
@@ -80,7 +80,7 @@
         }
 
         .nav-active {
-          background: linear-gradient(60deg, #dc4405, #e05e29);
+          background: var(--orange-color);
           border-radius: 4px;
           width: 50px;
           height: 50px;

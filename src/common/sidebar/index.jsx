@@ -1,12 +1,13 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { UserOutlined, ProjectOutlined, TeamOutlined } from "@ant-design/icons";
 import { ReactComponent as DoctorIcon } from "../../assets/icons/doctor.svg";
 import { ReactComponent as Logo } from "../../assets/icons/medical-device.svg";
-import { Link, useLocation } from "react-router-dom";
+import { ReactComponent as Virus } from "../../assets/icons/bacteria.svg";
 import sidebarBackground from "../../assets/sidebar/sidebar.jpg";
-import "./Sidebar.scss";
+import "./index.scss";
 
-const Sidebar = () => {
+const Sidebar = ({ userType }) => {
   const location = useLocation();
   return (
     <div className="sidebar">
@@ -38,20 +39,40 @@ const Sidebar = () => {
               <ProjectOutlined rotate={180} />
               <p>Dashboard</p>
             </Link>
+            {userType === "admin" ? (
+              <Link
+                className={`${
+                  location.pathname === "/disease" ? "nav nav-active" : "nav"
+                }`}
+                to="/disease"
+              >
+                <span>
+                  <Virus
+                    fill="white"
+                    style={{ height: "24px", width: "24px" }}
+                  />
+                </span>
+                <p>Disease</p>
+              </Link>
+            ) : (
+              <Link
+                className={`${
+                  location.pathname === "/profiles" ? "nav nav-active" : "nav"
+                }`}
+                to="/profiles"
+              >
+                {userType === "admin" ? <Virus /> : <TeamOutlined />}
+                <p>Profiles</p>
+              </Link>
+            )}
             <Link
               className={`${
-                location.pathname === "/profiles" ? "nav nav-active" : "nav"
+                location.pathname === "/doctors" ||
+                location.pathname === "/on-boarding"
+                  ? "nav nav-active"
+                  : "nav"
               }`}
-              to="/profiles"
-            >
-              <TeamOutlined />
-              <p>Profiles</p>
-            </Link>
-            <Link
-              className={`${
-                location.pathname === "/doctors" ? "nav nav-active" : "nav"
-              }`}
-              to="/doctors"
+              to={userType === "admin" ? "/on-boarding" : "/doctors"}
             >
               <span>
                 <DoctorIcon
