@@ -16,7 +16,7 @@ import "./App.scss";
 
 const App = () => {
   const dispatch = useDispatch();
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
 
