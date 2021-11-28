@@ -9,26 +9,37 @@ import {
   DeleteOutlined,
   QrcodeOutlined,
 } from "@ant-design/icons";
-import { getProfiles } from "../../redux/userActions";
-import { defaultImage } from "../user/constant";
-import User from "../user";
-import CommonCard from "../../common/card";
-import TextInput from "../../common/input";
-import OrangeButton from "../../common/button/index";
+import { getProfiles } from "redux/userActions";
+import secureAxios from "services/http";
+import { defaultImage, toTitleCase } from "constants/constant";
+import AddProfile from "./addProfile";
+import CommonCard from "common/card";
+import TextInput from "common/input";
+import OrangeButton from "common/button/index";
+import PreLoader from "common/loader";
 import "./index.scss";
 
-const Profiles = ({ token }) => {
+const Profiles = () => {
   const dispatch = useDispatch();
-  const { userProfiles } = useSelector((state) => state.userReducer);
+  const { userProfiles, loading, token } = useSelector(
+    (state) => state.userReducer
+  );
   const [addProfile, setAddProfile] = useState(false);
-  const [profile, setProfile] = useState(userProfiles[0]);
+  const [editProfile, setEditProfile] = useState(false);
+  const [requestDisease, setRequestDisease] = useState(false);
+  const [profile, setProfile] = useState([]);
 
   const closeProfile = () => {
     setAddProfile(false);
+    setRequestDisease(false);
+    setEditProfile(false);
   };
 
-  const toTitleCase = (s) => {
-    return s?.charAt(0)?.toUpperCase() + s?.substr(1)?.toLowerCase();
+  const openRequest = () => {
+    setRequestDisease(true);
+  };
+  const closeRequest = () => {
+    setRequestDisease(false);
   };
 
   const viewProfile = (id) => {
@@ -55,118 +66,141 @@ const Profiles = ({ token }) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
-  const getData = () => {
-    const token = localStorage.getItem("user");
-    dispatch(getProfiles(token));
+  const deleteProfile = () => {
+    const { _id } = profile;
+    const payload = { access_token: token, profile_id: _id };
+    secureAxios.post("/delete_profile", payload).then((res) => {
+      if (res.data.status) {
+        dispatch(getProfiles(token));
+        setProfile({});
+      }
+    });
   };
 
   useEffect(() => {
-    getData();
-  }, []); // eslint-disable-line
+    dispatch(getProfiles(token));
+  }, []);
 
   const { name, age, blood_group, gender, disease } =
     profile?.profile_details || "";
   const { qr_code, profile_photo } = profile || "";
 
   return (
-    <div className="profiles">
-      <CommonCard>
-        <div className="main-content">
-          <div className="top-section">
-            <div className="search-bar">
-              <TextInput placeholder="Search profile..." />
-              <SearchOutlined />
-            </div>
-            <div className="icons">
-              <FileAddOutlined />
-              <UserAddOutlined onClick={() => setAddProfile(true)} />
-              <FileTextOutlined />
-            </div>
-          </div>
-          <div className="profile-content">
-            {userProfiles &&
-              userProfiles.map((item) => {
-                const { name, age, gender } = item.profile_details;
-                const image = item.profile_photo;
-                return (
-                  <div
-                    className={
-                      name === profile?.profile_details?.name
-                        ? "profile-section active"
-                        : "profile-section"
-                    }
-                    key={item._id}
-                    onClick={() => viewProfile(item._id)}
-                  >
-                    <img src={image ? image : defaultImage} alt="member" />
-                    <div className="info">
-                      <p>
-                        Name - {gender === "male" ? "Mr." : "Miss"}{" "}
-                        {toTitleCase(name)}
-                      </p>
-                      <p>Age - {age} years</p>
-                      <p>Gender - {toTitleCase(gender)}</p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
+    <>
+      {loading ? (
+        <div className="loading">
+          <CommonCard>
+            <PreLoader />
+          </CommonCard>
         </div>
-      </CommonCard>
-      <CommonCard>
-        <div className="profile-detail">
-          <div className="profile-icons">
-            <EditOutlined />
-            <DeleteOutlined />
-          </div>
-          {profile && (
-            <div className="details">
-              <img
-                src={profile_photo ? profile_photo : defaultImage}
-                alt="detail"
+      ) : (
+        <div className="profiles">
+          <CommonCard>
+            <div className="main-content">
+              <div className="top-section">
+                <div className="search-bar">
+                  <TextInput placeholder="Search profile..." />
+                  <SearchOutlined />
+                </div>
+                <div className="icons">
+                  <UserAddOutlined onClick={() => setAddProfile(true)} />
+                </div>
+              </div>
+              <div className="profile-content">
+                {userProfiles &&
+                  userProfiles.map((item) => {
+                    const { name, age, gender } = item.profile_details;
+                    const image = item.profile_photo;
+                    return (
+                      <div
+                        className={
+                          name === profile?.profile_details?.name
+                            ? "profile-section active"
+                            : "profile-section"
+                        }
+                        key={item._id}
+                        onClick={() => viewProfile(item._id)}
+                      >
+                        <img src={image ? image : defaultImage} alt="member" />
+                        <div className="info">
+                          <p>
+                            Name - {gender === "male" ? "Mr." : "Miss"}{" "}
+                            {toTitleCase(name)}
+                          </p>
+                          <p>Age - {age} years</p>
+                          <p>Gender - {toTitleCase(gender)}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </CommonCard>
+          <CommonCard>
+            <div className="profile-detail">
+              <div className="profile-icons">
+                <FileAddOutlined />
+                <FileTextOutlined />
+                <EditOutlined onClick={() => setEditProfile(true)} />
+                <DeleteOutlined onClick={deleteProfile} />
+              </div>
+              {profile && (
+                <div className="details">
+                  <img
+                    src={profile_photo ? profile_photo : defaultImage}
+                    alt="detail"
+                  />
+                  <div className="user-info">
+                    <p>Name - {toTitleCase(name)}</p>
+                    <p>Age - {age} years</p>
+                    <p>Gender - {toTitleCase(gender)}</p>
+                    <p>Blood group - {blood_group}</p>
+                    <p>Diseases - {toTitleCase(disease)}</p>
+                  </div>
+                  <div className="qr-code">
+                    <QrcodeOutlined />
+                  </div>
+                  <a href={qr_code} target="_blank" rel="noreferrer">
+                    <OrangeButton
+                      text="Download"
+                      type="orange-button"
+                      click={saveFile}
+                    />
+                  </a>
+                </div>
+              )}
+            </div>
+          </CommonCard>
+          {addProfile && (
+            <div className="profile-dialog">
+              <AddProfile
+                addProfile={addProfile}
+                closeProfile={closeProfile}
+                token={token}
+                requestDisease={requestDisease}
+                closeRequest={closeRequest}
+                openRequest={openRequest}
               />
-              <div className="user-info">
-                <p>Name - {toTitleCase(name)}</p>
-                <p>Age - {age} years</p>
-                <p>Gender - {toTitleCase(gender)}</p>
-                <p>Blood group - {blood_group}</p>
-                <p>Diseases - {toTitleCase(disease)}</p>
-              </div>
-              <div className="qr-code">
-                <QrcodeOutlined />
-              </div>
-              <a href={qr_code} rel="noreferrer" target="_blank">
-                <OrangeButton
-                  text="Download"
-                  type="orange-button"
-                  click={saveFile}
-                />
-              </a>
+            </div>
+          )}
+          {editProfile && (
+            <div className="profile-dialog">
+              <AddProfile
+                closeProfile={closeProfile}
+                profile={profile}
+                editProfile={editProfile}
+                addProfile={addProfile}
+              />
             </div>
           )}
         </div>
-      </CommonCard>
-      {addProfile && (
-        <ProfileDialog
-          addProfile={addProfile}
-          closeProfile={closeProfile}
-          token={token}
-        />
       )}
-    </div>
+    </>
   );
 };
 
 export default Profiles;
-
-const ProfileDialog = ({ addProfile, closeProfile, token }) => {
-  return (
-    <div className="profile-dialog">
-      <User addProfile={addProfile} closeProfile={closeProfile} token={token} />
-    </div>
-  );
-};
