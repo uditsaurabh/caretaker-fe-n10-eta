@@ -4,11 +4,13 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import LoginImage from "assets/login/landing.jpg";
+import OrangeButton from "common/button";
+import TextInput from "common/input";
+import { ReactComponent as Logo } from "assets/icons/medical-device.svg";
 import firebaseApp from "../firebaseConfig";
-import LoginImage from "../assets/login/landing.jpg";
-import OrangeButton from "../common/button";
-import TextInput from "../common/input";
-import { ReactComponent as Logo } from "../assets/icons/medical-device.svg";
 import "./index.scss";
 
 const Login = ({ checkUser, setLoading, loading }) => {
@@ -17,11 +19,8 @@ const Login = ({ checkUser, setLoading, loading }) => {
   const [mobile, setMobile] = useState(true);
 
   const handleChange = (node, value) => {
-    const reg = /^-?\d*(\.\d*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === "" || value === "-") {
-      if (node === "number") setNumber(value);
-      if (node === "otp") setOtp(value);
-    }
+    if (node === "number") setNumber(value);
+    if (node === "otp") setOtp(value);
   };
 
   const configureCaptcha = () => {
@@ -33,7 +32,6 @@ const Login = ({ checkUser, setLoading, loading }) => {
         callback: (response) => {
           onSignInSubmit();
         },
-        defaultCountry: "IN",
       },
       auth
     );
@@ -45,7 +43,7 @@ const Login = ({ checkUser, setLoading, loading }) => {
     setLoading(true);
 
     const auth = getAuth();
-    const phoneNumber = "+91" + number;
+    const phoneNumber = number;
     const appVerifier = window.recaptchaVerifier;
 
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
@@ -84,19 +82,19 @@ const Login = ({ checkUser, setLoading, loading }) => {
           {mobile ? (
             <>
               <div className="code">
-                <span>+91</span>
-                <TextInput
-                  change={(e) => handleChange("number", e.target.value)}
+                <PhoneInput
                   placeholder="Mobile"
-                  maxLength={10}
                   value={number}
+                  onChange={(val) => handleChange("number", val)}
+                  defaultCountry="IN"
+                  maxLength="11"
                 />
               </div>
               <OrangeButton
-                disabled={number.length < 10}
+                disabled={number ? number.length < 13 : true}
                 text="Request OTP"
                 type={
-                  number.length < 10
+                  number.length < 13
                     ? "orange-button disabled"
                     : "orange-button"
                 }

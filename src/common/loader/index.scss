@@ -1,8 +1,36 @@
-.loader {
-  margin: 20px 0;
-  margin-bottom: 20px;
-  padding: 30px 50px;
-  text-align: center;
-  background: #fff;
-  border-radius: 4px;
+.pre-loader {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  border: 8px solid rgba($color: #c4c4c4, $alpha: 0.5);
+  border-radius: 50%;
+  border-top: 8px solid #dc4405;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

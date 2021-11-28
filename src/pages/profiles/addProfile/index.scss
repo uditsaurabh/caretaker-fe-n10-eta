@@ -1,0 +1,161 @@
+.user {
+  width: 92%;
+  position: relative;
+
+  .close-icon {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+    cursor: pointer;
+    height: 0px;
+    font-size: 24px;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .edit-form {
+    .form-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+
+      select {
+        width: 218px;
+      }
+    }
+  }
+
+  .user-content {
+    margin: 0 50px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 30% 40%;
+    padding: 10px;
+
+    .image-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      img {
+        border-radius: 4px;
+        height: 150px;
+        width: 150px;
+      }
+      .dp {
+        .ant-upload-list {
+          display: none;
+        }
+      }
+      .ant-upload-list {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        max-height: 150px;
+
+        .ant-upload-span {
+          width: 150px;
+          margin-top: 8px;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          font-size: 12px;
+          button {
+            background: var(--white);
+            border: none;
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      gap: 10px;
+    }
+  }
+  .save-button {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  .user-content {
+    grid-template-columns: 30% 50% !important;
+    gap: 10px !important;
+    margin: 0 10px !important;
+    img,
+    button {
+      width: 50%;
+    }
+    .form-section {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .user {
+    height: 660px !important;
+    width: 100% !important;
+    background: #fff;
+    .close-icon {
+      position: absolute !important;
+      top: -10px !important;
+      right: 95px !important;
+    }
+    .user-content {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      justify-content: center !important;
+      width: 375px !important;
+      margin: -20px 10px !important;
+      padding: 0 !important;
+      .image-section {
+        button {
+          width: 100%;
+        }
+      }
+      .form-section {
+        width: 50% !important;
+        flex-direction: column !important;
+        gap: 20px;
+
+        input {
+          font-size: 12px !important;
+        }
+
+        .react-select-container {
+          background: rgba($color: #c4c4c4, $alpha: 0.5) !important;
+        }
+      }
+    }
+  }
+  .save-button {
+    position: absolute !important;
+    bottom: 0px !important;
+    right: 50% !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .user {
+    padding: 10px;
+    margin-top: -20px;
+    background: #fff;
+    .user-content {
+      margin: 0px -40px !important;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { CloseOutlined } from "@ant-design/icons";
-import OrangeButton from "../../../common/button";
+import OrangeButton from "common/button";
 
 const ResolveDialog = ({ resolve, diseaseList, closeResolve }) => {
   return (
