@@ -4,7 +4,6 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import firebaseApp from "../firebaseConfig";
 import LoginImage from "../assets/login/landing.jpg";
 import OrangeButton from "../common/button";
 import TextInput from "../common/input";
