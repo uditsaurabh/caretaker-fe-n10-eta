@@ -10,7 +10,7 @@ import LoginImage from "assets/login/landing.jpg";
 import OrangeButton from "common/button";
 import TextInput from "common/input";
 import { ReactComponent as Logo } from "assets/icons/medical-device.svg";
-import firebaseApp from "../firebaseConfig";
+import firebaseApp from "../firebaseConfig"; //eslint-disable-line
 import "./index.scss";
 
 const Login = ({ checkUser, setLoading, loading }) => {

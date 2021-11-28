@@ -27,11 +27,11 @@ const Disease = () => {
 
   useEffect(() => {
     dispatch(getDisease());
-  }, [disease]);
+  }, [disease]); //eslint-disable-line
 
   useEffect(() => {
     dispatch(getReqDisease());
-  }, [reqDisease]);
+  }, [reqDisease]); //eslint-disable-line
 
   const handleResolve = (val) => {
     setResolve(val);

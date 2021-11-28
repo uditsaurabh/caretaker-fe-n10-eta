@@ -65,7 +65,7 @@ const User = () => {
   useEffect(() => {
     const token = localStorage.getItem("user");
     dispatch(getUser(token));
-  }, []);
+  }, []); //eslint-disable-line
 
   const props = {
     onRemove: (file) => {

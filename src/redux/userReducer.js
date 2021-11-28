@@ -63,6 +63,7 @@ const userReducer = (state = initialState, action) => {
         return;
       case SET_DASHBOARD:
         draft.dashboard = action.payload;
+        return;
       default:
         return;
     }

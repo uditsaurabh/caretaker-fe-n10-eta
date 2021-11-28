@@ -16,7 +16,7 @@ const Dashboard = () => {
   useEffect(() => {
     const { value } = testName;
     dispatch(getDashboard(token, value));
-  }, []);
+  }, []); //eslint-disable-line
 
   return (
     <div className="dashboard">

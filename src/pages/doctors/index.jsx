@@ -17,7 +17,7 @@ const Doctors = ({ boarding }) => {
 
   useEffect(() => {
     dispatch(getDoctor());
-  }, []);
+  }, []); //eslint-disable-line
 
   const viewDoctor = (name) => {
     doctor.forEach((item) => {

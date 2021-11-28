@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DyteMeeting } from "dyte-client";
+import { DyteMeeting } from "dyte-client"; //eslint-disable-line
 import createroom from "services/createRoom";
 
 const DoctorDashboard = () => {
