@@ -30,18 +30,13 @@
       }
 
       .code {
-        display: flex;
-        align-items: center;
-        background-color: #fff;
+        background: var(--white);
         border-radius: 4px;
-        letter-spacing: 1px;
-        font-weight: 500;
-        padding: 8px;
-        height: 30px;
-        width: 200px;
+        padding: 0px 10px;
 
         input {
           letter-spacing: 1px;
+          width: 150px;
         }
       }
 

@@ -1,63 +1,28 @@
-import React, { useState } from "react";
-import {
-  SearchOutlined,
-  EditOutlined,
-  DeleteOutlined,
-  UserAddOutlined,
-} from "@ant-design/icons";
-import CommonCard from "../../common/card";
-import OrangeButton from "../../common/button/index";
-import TextInput from "../../common/input";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getDoctor } from "redux/userActions";
+import { SearchOutlined, UserAddOutlined } from "@ant-design/icons";
+import CommonCard from "common/card";
+import OrangeButton from "common/button/index";
+import TextInput from "common/input";
+import PreLoader from "common/loader";
 import AddDoctor from "./addDoctor";
 import "./index.scss";
 
 const Doctors = ({ boarding }) => {
-  const data = [
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "XYZ",
-      experience: "3",
-      expertise: "Cardiologist",
-      fees: "50",
-    },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "ABC",
-      experience: "6",
-      fees: "50",
-      expertise: "Neurologist",
-    },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "DEF",
-      experience: "8",
-      fees: "50",
-      expertise: "Dermatologists",
-    },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "UVW",
-      experience: "10",
-      fees: "50",
-      expertise: "Endocrinologists",
-    },
-    {
-      image: "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg",
-      name: "XYZA",
-      experience: "3",
-      expertise: "Cardiologist",
-      fees: "50",
-    },
-  ];
-
-  const [doctor, setDoctor] = useState(data[0]);
+  const dispatch = useDispatch();
+  const { doctor, loading } = useSelector((state) => state.userReducer);
+  const [openDoctor, setOpenDoctor] = useState(doctor[0]);
   const [addDoctor, setAddDoctor] = useState(false);
 
+  useEffect(() => {
+    dispatch(getDoctor());
+  }, []); //eslint-disable-line
+
   const viewDoctor = (name) => {
-    data.forEach((item) => {
-      if (item.name === name) {
-        setDoctor(item);
+    doctor.forEach((item) => {
+      if (item.user_name === name) {
+        setOpenDoctor(item);
       }
     });
   };
@@ -66,91 +31,92 @@ const Doctors = ({ boarding }) => {
     setAddDoctor(false);
   };
 
-  const handleCall = () => {
-    axios
-      .post(
-        "https://api.cluster.dyte.in/v1/organizations/10b2adc1-93a1-427a-a3b5-8b6d84a96c91/meeting",
-        { title: "Consultation", authorization: { waitingRoom: true } },
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: "8bb9c4e4a9b1488f8435",
-          },
-        }
-      )
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  };
+  const {
+    doctor_experience,
+    doctorProfilePhoto,
+    dpctor_expertise,
+    user_name: doctorName,
+    doctor_fees,
+  } = openDoctor || "";
 
   return (
-    <div className="doctors">
-      <CommonCard>
-        <div className="doctor-list">
-          <div className="doc-top">
-            <div className="search-bar">
-              <TextInput placeholder="Search doctor..." />
-              <SearchOutlined />
-            </div>
-            {boarding && (
-              <div className="add-doc">
-                <UserAddOutlined onClick={() => setAddDoctor(true)} />
-              </div>
-            )}
-          </div>
-          <div className="list-content">
-            {data.map((item, i) => (
-              <div
-                className={item.name === doctor.name ? "list active" : "list"}
-                key={i}
-                onClick={() => viewDoctor(item.name)}
-              >
-                <img src={item.image} alt="member" />
-                <div className="info">
-                  <p>Name - Dr. {item.name}</p>
-                  <p>Expertise - {item.expertise}</p>
-                  <p>Experience - {item.experience} years</p>
+    <>
+      {loading ? (
+        <div className="loading">
+          <CommonCard>
+            <PreLoader />
+          </CommonCard>
+        </div>
+      ) : (
+        <div className="doctors">
+          <CommonCard>
+            <div className="doctor-list">
+              <div className="doc-top">
+                <div className="search-bar">
+                  <TextInput placeholder="Search doctor..." />
+                  <SearchOutlined />
                 </div>
+                {boarding && (
+                  <div className="add-doc">
+                    <UserAddOutlined onClick={() => setAddDoctor(true)} />
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-        </div>
-      </CommonCard>
-      <CommonCard>
-        <div className="doctor-info">
-          {boarding && (
-            <div className="board-icons">
-              <EditOutlined />
-              <DeleteOutlined />
+              <div className="list-content">
+                {doctor &&
+                  doctor.map((item, i) => {
+                    const {
+                      doctor_experience,
+                      doctorProfilePhoto,
+                      dpctor_expertise,
+                      user_name,
+                    } = item;
+                    return (
+                      <div
+                        className={
+                          user_name === doctorName ? "list active" : "list"
+                        }
+                        key={i}
+                        onClick={() => viewDoctor(user_name)}
+                      >
+                        <img src={doctorProfilePhoto} alt="member" />
+                        <div className="info">
+                          <p>Name - Dr. {user_name}</p>
+                          <p>Expertise - {dpctor_expertise}</p>
+                          <p>Experience - {doctor_experience} years</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
-          )}
-          <div className="details">
-            <img
-              src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
-              alt="detail"
-            />
-            <div className="doc-info">
-              <p>Name - Dr. {doctor?.name}</p>
-              <p>Expertise - {doctor?.expertise}</p>
-              <p>Experience - {doctor?.experience} years</p>
-              <p>Fees - INR {doctor?.fees}/-</p>
+          </CommonCard>
+          <CommonCard>
+            <div className="doctor-info">
+              <div className="details">
+                <img src={doctorProfilePhoto} alt="detail" />
+                <div className="doc-info">
+                  <p>Name - Dr. {doctorName}</p>
+                  <p>Expertise - {dpctor_expertise}</p>
+                  <p>Experience - {doctor_experience} years</p>
+                  <p>Fees - INR {doctor_fees}/-</p>
+                </div>
+                {!boarding && (
+                  <>
+                    <hr />
+                    <span className="note">
+                      For a consultation please pay fees
+                    </span>
+                    <OrangeButton text="Pay" type="orange-button" />
+                  </>
+                )}
+              </div>
             </div>
-            {!boarding && (
-              <>
-                <hr />
-                <span className="note">For a consultation please pay fees</span>
-                <OrangeButton
-                  text="Pay"
-                  type="orange-button"
-                  click={handleCall}
-                />
-              </>
-            )}
-          </div>
+          </CommonCard>
+          {addDoctor && <AddDoctor handleCloseDialog={handleCloseDialog} />}
         </div>
-      </CommonCard>
-      {addDoctor && <AddDoctor handleCloseDialog={handleCloseDialog} />}
-    </div>
+      )}
+    </>
   );
 };
 

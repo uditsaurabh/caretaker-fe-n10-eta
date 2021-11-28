@@ -1,2 +1,14 @@
 export const DELETE_PROFILE = "DELETE_PROFILE";
 export const SET_PROFILE = "SET_PROFILE";
+export const USER_DETAIL = "USER_DETAIL";
+export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
+export const ADD_PROFILE = "ADD_PROFILE";
+export const LOAD_INIT = "LOAD_INIT";
+export const LOAD_DONE = "LOAD_DONE";
+export const GET_DOCTOR = "GET_DOCTOR";
+export const GET_DISEASE = "GET_DISEASE";
+export const REQ_DISEASE = "REQ_DISEASE";
+export const LOAD_PROFILES = "LOAD_PROFILES";
+export const LOADED_PROFILES = "LOADED_PROFILES";
+export const SET_TOKEN = "SET_TOKEN";
+export const SET_DASHBOARD = "SET_DASHBOARD";

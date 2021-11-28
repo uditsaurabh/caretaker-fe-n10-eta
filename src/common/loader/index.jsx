@@ -1,13 +1,8 @@
 import React from "react";
-import { Spin } from "antd";
 import "./index.scss";
 
-const Loader = () => {
-  return (
-    <div className="loader">
-      <Spin size="large" />
-    </div>
-  );
+const PreLoader = () => {
+  return <div className="pre-loader"></div>;
 };
 
-export default Loader;
+export default PreLoader;

@@ -1,127 +1,32 @@
-.user {
+.user-profile {
   width: 92%;
-  position: relative;
 
-  .close-icon {
-    display: flex;
-    justify-content: flex-end;
-    padding: 15px;
-    cursor: pointer;
-    height: 0px;
-    font-size: 24px;
-
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-  .user-content {
-    margin: 0 50px;
+  .user-details {
     padding: 30px;
-    display: grid;
-    grid-template-columns: 30% 40%;
-    .image-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+
+    input {
+      background-color: rgba($color: #c4c4c4, $alpha: 0.5);
+      width: 250px;
+    }
+    .ant-upload-span {
+      width: 150px;
+      margin-top: 8px;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      img {
-        border-radius: 4px;
-        height: 150px;
-        width: 150px;
-      }
-      .dp {
-        .ant-upload-list {
-          display: none;
-        }
-      }
-      .ant-upload-list {
-        overflow-y: scroll;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        max-height: 150px;
-
-        .ant-upload-span {
-          width: 150px;
-          margin-top: 8px;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          font-size: 12px;
-          button {
-            background: var(--white);
-            border: none;
-            &:hover {
-              opacity: 0.5;
-            }
-          }
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 12px;
+      button {
+        background: var(--white);
+        border: none;
+        &:hover {
+          opacity: 0.5;
         }
       }
     }
-    .form-section {
-      display: flex;
-      flex-direction: column;
-      width: 70%;
-      gap: 10px;
-    }
-  }
-  .profile {
-    padding: 10px !important;
-  }
-  .save-button {
-    position: absolute;
-    right: 30px;
-    bottom: 30px;
-  }
-}
-
-@media (max-width: 850px) {
-  .user-content {
-    grid-template-columns: 30% 50% !important;
-    gap: 10px !important;
-    margin: 0 10px !important;
-    img,
-    button {
-      width: 50%;
-    }
-    .form-section {
-      width: 100% !important;
-    }
-  }
-}
-
-@media (max-width: 600px) {
-  .user {
-    height: 660px !important;
-    width: 100% !important;
-    .user-content {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-direction: column !important;
-      gap: 20px !important;
-      justify-content: center !important;
-      width: 375px !important;
-      margin: 0 10px !important;
-      padding: 0 !important;
-      .image-section {
-        button {
-          width: 100%;
-        }
-      }
-      .form-section {
-        width: 50% !important;
-        flex-direction: column !important;
-        gap: 20px;
-
-        input,
-        select {
-          font-size: 12px !important;
-        }
-      }
-    }
-  }
-  .save-button {
-    position: absolute !important;
-    bottom: 0px !important;
-    right: 50% !important;
   }
 }

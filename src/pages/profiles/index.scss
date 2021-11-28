@@ -3,6 +3,7 @@
   grid-template-columns: 70% 20%;
   gap: 2%;
   position: relative;
+  overflow-y: scroll;
 
   .main-content {
     padding: 30px;
@@ -97,6 +98,9 @@
 
   .profile-detail {
     padding: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 
     .profile-icons {
       display: flex;
@@ -106,7 +110,7 @@
         cursor: pointer;
 
         &:hover {
-          opacity: 50%;
+          opacity: 0.5;
         }
       }
     }
@@ -144,14 +148,128 @@
     }
   }
   .profile-dialog {
-    z-index: 5;
+    z-index: 10;
     position: fixed;
     width: 100%;
     top: 15%;
     left: 80px;
   }
 }
+.loading {
+  width: 92%;
+}
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 940px) {
+  .profiles {
+    p {
+      font-size: 11px !important;
+    }
+
+    .main-content {
+      padding: 20px;
+    }
+    .profile-detail {
+      padding: 10px !important;
+
+      .qr-code,
+      button {
+        margin-top: 15% !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .profiles {
+    grid-template-columns: 70% 18%;
+    p {
+      font-size: 10px !important;
+    }
+
+    .main-content {
+      padding: 15px;
+    }
+    .profile-detail {
+      padding: 5px !important;
+
+      button {
+        margin-top: 15% !important;
+        width: 110px;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .profiles {
+    grid-template-columns: 70% 20% !important;
+    p {
+      font-size: 9px !important;
+    }
+
+    .main-content {
+      padding: 12px;
+      .top-section {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start;
+        gap: 15px;
+
+        .search-bar {
+          width: 60%;
+        }
+      }
+      .profile-content {
+        grid-template-columns: 70%;
+      }
+    }
+    .profile-detail {
+      padding: 3px !important;
+
+      .qr-code,
+      button {
+        margin-top: 30% !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .profiles {
+    grid-template-columns: 83% !important;
+    margin-top: -30px;
+    p {
+      font-size: 10px !important;
+    }
+
+    .main-content {
+      padding: 12px;
+    }
+    .profile-detail {
+      padding: 20px !important;
+
+      .details {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 20px !important;
+
+        img {
+          width: 85px !important;
+          height: 85px !important;
+        }
+      }
+
+      .qr-code {
+        display: none;
+      }
+      button {
+        margin-top: 10px !important;
+        width: 90px !important;
+      }
+    }
+  }
 }

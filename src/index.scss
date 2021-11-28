@@ -12,9 +12,3 @@ body {
   --header-color: #00475d;
   --black: #000;
 }
-
-@media (max-width: 600px) {
-  body {
-    background-color: var(--white);
-  }
-}

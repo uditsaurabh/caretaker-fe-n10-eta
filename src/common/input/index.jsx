@@ -2,7 +2,15 @@ import React from "react";
 import { Input } from "antd";
 import "./index.scss";
 
-function TextInput({ change, size, placeholder, maxLength, value, color }) {
+function TextInput({
+  change,
+  size,
+  placeholder,
+  maxLength,
+  value,
+  color,
+  disabled,
+}) {
   return (
     <>
       <Input
@@ -12,6 +20,7 @@ function TextInput({ change, size, placeholder, maxLength, value, color }) {
         maxLength={maxLength}
         value={value}
         className={color}
+        disabled={disabled}
       />
     </>
   );
