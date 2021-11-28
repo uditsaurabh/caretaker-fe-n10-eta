@@ -83,7 +83,7 @@ const Profiles = () => {
 
   useEffect(() => {
     dispatch(getProfiles(token));
-  }, []);
+  }, []); //eslint-disable-line
 
   const { name, age, blood_group, gender, disease } =
     profile?.profile_details || "";
