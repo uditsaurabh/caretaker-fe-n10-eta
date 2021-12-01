@@ -9,17 +9,20 @@ const ResolveDialog = ({ resolve, diseaseList, closeResolve }) => {
         <CloseOutlined />
       </div>
       <p>
-        Please select the disease to merge <b>{resolve}</b> with?
+        Please select the disease to merge <b>{resolve}</b>?
       </p>
       <select defaultValue="disease">
         <option value="disease" disabled>
           Disease
         </option>
-        {diseaseList.map((item, i) => (
-          <option key={i} value={item}>
-            {item}
-          </option>
-        ))}
+        {diseaseList.map((item) => {
+          const { _id, disease } = item;
+          return (
+            <option key={_id} value={disease}>
+              {disease}
+            </option>
+          );
+        })}
       </select>
       <OrangeButton text="Proceed" type="orange-button" />
     </div>

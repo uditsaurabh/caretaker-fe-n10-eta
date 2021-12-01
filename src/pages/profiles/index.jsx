@@ -13,11 +13,13 @@ import { getProfiles } from "redux/userActions";
 import secureAxios from "services/http";
 import { defaultImage, toTitleCase } from "constants/constant";
 import AddProfile from "./addProfile";
+import AddReports from "./addReports";
 import CommonCard from "common/card";
 import TextInput from "common/input";
 import OrangeButton from "common/button/index";
 import PreLoader from "common/loader";
 import "./index.scss";
+import ViewReports from "./viewReport";
 
 const Profiles = () => {
   const dispatch = useDispatch();
@@ -27,12 +29,16 @@ const Profiles = () => {
   const [addProfile, setAddProfile] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
   const [requestDisease, setRequestDisease] = useState(false);
+  const [addReports, setAddReports] = useState(false);
+  const [viewReports, setViewReports] = useState(false);
   const [profile, setProfile] = useState([]);
 
   const closeProfile = () => {
     setAddProfile(false);
     setRequestDisease(false);
     setEditProfile(false);
+    setAddReports(false);
+    setViewReports(false);
   };
 
   const openRequest = () => {
@@ -81,7 +87,7 @@ const Profiles = () => {
     });
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(getProfiles(token));
   }, []); //eslint-disable-line
 
@@ -143,8 +149,8 @@ const Profiles = () => {
           <CommonCard>
             <div className="profile-detail">
               <div className="profile-icons">
-                <FileAddOutlined />
-                <FileTextOutlined />
+                <FileAddOutlined onClick={() => setAddReports(true)} />
+                <FileTextOutlined onClick={() => setViewReports(true)} />
                 <EditOutlined onClick={() => setEditProfile(true)} />
                 <DeleteOutlined onClick={deleteProfile} />
               </div>
@@ -197,6 +203,10 @@ const Profiles = () => {
               />
             </div>
           )}
+          {addReports && (
+            <AddReports closeProfile={closeProfile} profile={profile} />
+          )}
+          {viewReports && <ViewReports closeProfile={closeProfile} />}
         </div>
       )}
     </>

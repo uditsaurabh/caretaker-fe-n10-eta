@@ -42,6 +42,17 @@ const Sidebar = ({ userType }) => {
                 <p>Dashboard</p>
               </Link>
             )}
+            {userType === "admin" && (
+              <Link
+                className={`${
+                  pathname === "/admin-dashboard" ? "nav nav-active" : "nav"
+                }`}
+                to="/admin-dashboard"
+              >
+                <ProjectOutlined rotate={180} />
+                <p>Dashboard</p>
+              </Link>
+            )}
             {userType === "doctor" && (
               <Link
                 className={`${

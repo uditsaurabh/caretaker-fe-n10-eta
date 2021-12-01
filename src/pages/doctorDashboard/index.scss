@@ -1,0 +1,15 @@
+.meeting-room {
+  width: 92%;
+
+  .call-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
+
+    button {
+      height: 60px;
+    }
+  }
+}

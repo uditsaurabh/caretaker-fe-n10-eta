@@ -22,7 +22,7 @@ const initialState = {
   doctor: [],
   disease: [],
   reqDisease: [],
-  dashboard: [],
+  dashboard: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -63,7 +63,7 @@ const userReducer = (state = initialState, action) => {
         return;
       case SET_DASHBOARD:
         draft.dashboard = action.payload;
-        return;
+        break;
       default:
         return;
     }
