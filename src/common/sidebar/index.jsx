@@ -34,7 +34,9 @@ const Sidebar = ({ userType }) => {
             {userType === "user" && (
               <Link
                 className={`${
-                  pathname === "/dashboard" ? "nav nav-active" : "nav"
+                  pathname === "/dashboard" || pathname === "/"
+                    ? "nav nav-active"
+                    : "nav"
                 }`}
                 to="/dashboard"
               >
@@ -45,7 +47,9 @@ const Sidebar = ({ userType }) => {
             {userType === "admin" && (
               <Link
                 className={`${
-                  pathname === "/admin-dashboard" ? "nav nav-active" : "nav"
+                  pathname === "/admin-dashboard" || pathname === "/"
+                    ? "nav nav-active"
+                    : "nav"
                 }`}
                 to="/admin-dashboard"
               >
@@ -56,7 +60,9 @@ const Sidebar = ({ userType }) => {
             {userType === "doctor" && (
               <Link
                 className={`${
-                  pathname === "/doctor-Dashboard" ? "nav nav-active" : "nav"
+                  pathname === "/doctor-Dashboard" || pathname === "/"
+                    ? "nav nav-active"
+                    : "nav"
                 }`}
                 to="/doctor-Dashboard"
               >

@@ -1,4 +1,3 @@
-export const DELETE_PROFILE = "DELETE_PROFILE";
 export const SET_PROFILE = "SET_PROFILE";
 export const USER_DETAIL = "USER_DETAIL";
 export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";

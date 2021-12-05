@@ -24,7 +24,7 @@ const Header = ({ handleLogout }) => {
 
   return (
     <div className="header">
-      <p>{toTitleCase(pathnName)}</p>
+      <p>{pathnName ? toTitleCase(pathnName) : "Dashboard"}</p>
       <div className="container" ref={container}>
         <div onClick={() => setOpen((open) => !open)}>
           <UserOutlined />

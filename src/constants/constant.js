@@ -1,3 +1,5 @@
+import { message } from "antd";
+
 export const toTitleCase = (s) => {
   return s?.charAt(0)?.toUpperCase() + s?.substr(1)?.toLowerCase();
 };
@@ -25,3 +27,20 @@ export const test = [
   { name: "WBC count", value: "wbc" },
   { name: "Haemoglobin", value: "hm" },
 ];
+
+export const showMessage = (type) => {
+  message.success({
+    content: type,
+    duration: 3,
+    className: "custom-class",
+    style: {
+      display: "flex",
+      position: "fixed",
+      left: "45%",
+      top: "5vh",
+      padding: "4px 8px",
+      borderRadius: "4px",
+      gap: "5px",
+    },
+  });
+};

@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  UserAddOutlined,
-  FileAddOutlined,
-  FileTextOutlined,
-  SearchOutlined,
-  EditOutlined,
-  DeleteOutlined,
-  QrcodeOutlined,
-} from "@ant-design/icons";
-import { getProfiles } from "redux/userActions";
-import secureAxios from "services/http";
+import { UserAddOutlined, SearchOutlined } from "@ant-design/icons";
+import { getProfiles, getUser } from "redux/userActions";
 import { defaultImage, toTitleCase } from "constants/constant";
 import AddProfile from "./addProfile";
 import AddReports from "./addReports";
+import ViewReports from "./viewReport";
+import ViewProfile from "./viewProfile";
 import CommonCard from "common/card";
 import TextInput from "common/input";
-import OrangeButton from "common/button/index";
 import PreLoader from "common/loader";
 import "./index.scss";
-import ViewReports from "./viewReport";
 
 const Profiles = () => {
   const dispatch = useDispatch();
@@ -31,7 +22,7 @@ const Profiles = () => {
   const [requestDisease, setRequestDisease] = useState(false);
   const [addReports, setAddReports] = useState(false);
   const [viewReports, setViewReports] = useState(false);
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState(userProfiles[0]);
 
   const closeProfile = () => {
     setAddProfile(false);
@@ -56,44 +47,10 @@ const Profiles = () => {
     });
   };
 
-  const saveFile = (e) => {
-    fetch(e.target.href, {
-      method: "GET",
-      headers: {},
-    })
-      .then((response) => {
-        response.arrayBuffer().then(function (buffer) {
-          const url = window.URL.createObjectURL(new Blob([buffer]));
-          const link = document.createElement("a");
-          link.href = url;
-          link.setAttribute("download", "image.png");
-          document.body.appendChild(link);
-          link.click();
-        });
-      })
-      .catch((err) => {
-        throw err;
-      });
-  };
-
-  const deleteProfile = () => {
-    const { _id } = profile;
-    const payload = { access_token: token, profile_id: _id };
-    secureAxios.post("/delete_profile", payload).then((res) => {
-      if (res.data.status) {
-        dispatch(getProfiles(token));
-        setProfile({});
-      }
-    });
-  };
-
-  useEffect(async () => {
+  useEffect(() => {
+    dispatch(getUser(token));
     dispatch(getProfiles(token));
   }, []); //eslint-disable-line
-
-  const { name, age, blood_group, gender, disease } =
-    profile?.profile_details || "";
-  const { qr_code, profile_photo } = profile || "";
 
   return (
     <>
@@ -117,7 +74,7 @@ const Profiles = () => {
                 </div>
               </div>
               <div className="profile-content">
-                {userProfiles &&
+                {userProfiles.length > 0 &&
                   userProfiles.map((item) => {
                     const { name, age, gender } = item.profile_details;
                     const image = item.profile_photo;
@@ -147,39 +104,16 @@ const Profiles = () => {
             </div>
           </CommonCard>
           <CommonCard>
-            <div className="profile-detail">
-              <div className="profile-icons">
-                <FileAddOutlined onClick={() => setAddReports(true)} />
-                <FileTextOutlined onClick={() => setViewReports(true)} />
-                <EditOutlined onClick={() => setEditProfile(true)} />
-                <DeleteOutlined onClick={deleteProfile} />
-              </div>
-              {profile && (
-                <div className="details">
-                  <img
-                    src={profile_photo ? profile_photo : defaultImage}
-                    alt="detail"
-                  />
-                  <div className="user-info">
-                    <p>Name - {toTitleCase(name)}</p>
-                    <p>Age - {age} years</p>
-                    <p>Gender - {toTitleCase(gender)}</p>
-                    <p>Blood group - {blood_group}</p>
-                    <p>Diseases - {toTitleCase(disease)}</p>
-                  </div>
-                  <div className="qr-code">
-                    <QrcodeOutlined />
-                  </div>
-                  <a href={qr_code} target="_blank" rel="noreferrer">
-                    <OrangeButton
-                      text="Download"
-                      type="orange-button"
-                      click={saveFile}
-                    />
-                  </a>
-                </div>
-              )}
-            </div>
+            {profile && Object.keys(profile).length > 0 && (
+              <ViewProfile
+                profile={profile}
+                setProfile={setProfile}
+                setAddReports={setAddReports}
+                setEditProfile={setEditProfile}
+                setViewReports={setViewReports}
+                userProfiles={userProfiles}
+              />
+            )}
           </CommonCard>
           {addProfile && (
             <div className="profile-dialog">
@@ -206,7 +140,9 @@ const Profiles = () => {
           {addReports && (
             <AddReports closeProfile={closeProfile} profile={profile} />
           )}
-          {viewReports && <ViewReports closeProfile={closeProfile} />}
+          {viewReports && (
+            <ViewReports closeProfile={closeProfile} profile={profile} />
+          )}
         </div>
       )}
     </>

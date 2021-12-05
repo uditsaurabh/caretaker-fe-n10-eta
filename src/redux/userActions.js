@@ -1,6 +1,5 @@
 import secureAxios from "../services/http";
 import {
-  DELETE_PROFILE,
   SET_PROFILE,
   USER_DETAIL,
   LOAD_INIT,

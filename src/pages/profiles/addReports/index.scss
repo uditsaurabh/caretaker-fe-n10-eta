@@ -4,7 +4,7 @@
   left: 43%;
   height: 75vh;
   width: 300px;
-  background: rgba($color: #c4c4c4, $alpha: 1);
+  background: rgba($color: #000, $alpha: 0.8);
   border-radius: 4px;
   padding: 20px;
   text-align: center;
@@ -17,6 +17,7 @@
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
+    color: var(--white);
 
     &:hover {
       opacity: 0.5;
@@ -27,19 +28,22 @@
     margin-top: 20px;
 
     .ant-upload-list {
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      color: var(--white);
       .ant-upload-span {
-        width: 150px;
+        width: 145px;
         margin-top: 10px;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         font-size: 12px;
         button {
           background: var(--grey-background);
+          color: var(--white);
           border: none;
           &:hover {
             opacity: 0.5;

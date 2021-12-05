@@ -3,16 +3,23 @@ import { line, zoom } from "billboard.js";
 import BillboardChart from "react-billboardjs";
 import "billboard.js/dist/theme/insight.css";
 
-let data = {
-  columns: [
-    ["Dinesh", 11, 12, 13, 14, 15, 16, 17, 18, 17, 16],
-    ["Akshay", 10, 12, 14, 16, 18, 17, 15, 13, 14, 17],
-    ["Kapil", 14, 12, 10, 11, 13, 15, 17, 16, 18, 16],
-  ],
-  type: line(),
-};
+const LineChart = ({ dashboard }) => {
+  let chartData = Object.entries(dashboard);
+  let finalArray = [];
+  for (let key in Object.keys(chartData)) {
+    let dataArray = [];
+    dataArray.push(chartData[key][0]);
+    for (let index in Object.keys(chartData[key][1])) {
+      dataArray.push(chartData[key][1][index][0]);
+    }
+    finalArray.push(dataArray);
+  }
 
-const LineChart = () => {
+  let data = {
+    columns: finalArray,
+    type: line(),
+  };
+
   return (
     <div className="App">
       <BillboardChart

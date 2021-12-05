@@ -1,5 +1,4 @@
 import {
-  DELETE_PROFILE,
   SET_PROFILE,
   USER_DETAIL,
   LOAD_INIT,
@@ -15,7 +14,7 @@ import {
 import produce from "immer";
 
 const initialState = {
-  token: "",
+  token: localStorage.getItem("user"),
   loading: false,
   user: {},
   userProfiles: [],
@@ -28,9 +27,6 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   return produce(state, (draft) => {
     switch (action.type) {
-      case DELETE_PROFILE:
-        draft.userProfiles = action.payload;
-        return;
       case SET_PROFILE:
         draft.userProfiles = action.payload;
         return;

@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { DyteMeeting } from "dyte-client";
+import { getUser } from "redux/userActions";
 import createroom from "services/createRoom";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
 import "./index.scss";
 
 const DoctorDashboard = () => {
-  const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const { user, token } = useSelector((state) => state.userReducer);
   const { phone_number, user_name } = user?.data || "";
   const [meetingId, setMeetingId] = useState("");
   const [roomName, setRoomName] = useState("");
   const [authToken, setAuthToken] = useState("");
 
   useEffect(() => {
+    dispatch(getUser(token));
     createroom
       .post("/meeting", {
         title: "Consultation",

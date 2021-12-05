@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
@@ -6,6 +6,8 @@ import { getUser, getToken } from "redux/userActions";
 import Login from "auth";
 import Header from "common/header";
 import Sidebar from "common/sidebar";
+import CommonCard from "common/card";
+import PreLoader from "common/loader";
 import User from "pages/user";
 import Dashboard from "pages/dashboard";
 import AdminDashboard from "pages/adminDashboard";
@@ -14,13 +16,16 @@ import Profiles from "pages/profiles";
 import Doctors from "pages/doctors";
 import Disease from "pages/disease";
 import DoctorBoarding from "pages/doctorOnboard";
+import NotFound from "pages/notFound";
 import "./App.scss";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.userReducer);
+  const { user, token } = useSelector((state) => state.userReducer);
   const [isUser, setIsUser] = useState(localStorage.getItem("user"));
   const [otpLoading, setOtpLoading] = useState(false);
+  const { user_type } = user?.data || "";
+
   const checkUser = () => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -43,11 +48,13 @@ const App = () => {
         window.location.href = "/";
       })
       .catch((error) => {
-        console.log(error);
+        throw error;
       });
   };
 
-  const { user_status } = user?.data || "";
+  useEffect(() => {
+    dispatch(getUser(token));
+  }, []); //eslint-disable-line
 
   return (
     <div className="app">
@@ -57,10 +64,10 @@ const App = () => {
           setLoading={setOtpLoading}
           loading={otpLoading}
         />
-      ) : (
+      ) : user_type ? (
         <Router>
           <Header handleLogout={handleLogout} />
-          <Sidebar userType="user" />
+          <Sidebar userType={user_type} />
           <div className="pages">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
@@ -71,16 +78,24 @@ const App = () => {
               <Route path="/user" element={<User />} />
               <Route path="/disease" element={<Disease />} />
               <Route path="/on-boarding" element={<DoctorBoarding />} />
-              {user_status === "new" ? (
-                <Route path="/" element={<User />} />
-              ) : (
+              <Route path="*" element={<NotFound />} />
+              {user_type === "user" ? (
                 <Route path="/" element={<Dashboard />} />
+              ) : user_type === "admin" ? (
+                <Route path="/" element={<AdminDashboard />} />
+              ) : (
+                <Route path="/" element={<DoctorDashboard />} />
               )}
             </Routes>
           </div>
         </Router>
+      ) : (
+        <div className="main-loading">
+          <CommonCard>
+            <PreLoader />
+          </CommonCard>
+        </div>
       )}
-      {}
     </div>
   );
 };
