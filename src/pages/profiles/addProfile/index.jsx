@@ -40,9 +40,9 @@ const AddProfile = ({
     }
   };
 
-  const addSuccess = () => {
+  const showMessage = (type) => {
     message.success({
-      content: "Profile added",
+      content: type,
       duration: 3,
       className: "custom-class",
       style: {
@@ -78,27 +78,13 @@ const AddProfile = ({
     secureAxios.post("/create_profile", formData).then((res) => {
       if (res.data.status) {
         setLoad(false);
-        addSuccess();
+        showMessage("Profile added");
         closeProfile();
         dispatch(getProfiles(token));
+      } else {
+        setLoad(false);
+        showMessage("Network error");
       }
-    });
-  };
-
-  const editSuccess = () => {
-    message.success({
-      content: "Profile Updated",
-      duration: 3,
-      className: "custom-class",
-      style: {
-        display: "flex",
-        position: "fixed",
-        left: "45%",
-        top: "5vh",
-        padding: "4px 8px",
-        borderRadius: "4px",
-        gap: "5px",
-      },
     });
   };
 
@@ -122,7 +108,7 @@ const AddProfile = ({
     secureAxios.post("/update_profile", payload).then((res) => {
       if (res.data.status) {
         setLoad(false);
-        editSuccess();
+        showMessage("Profile edit done");
         closeProfile();
         dispatch(getProfiles(token));
       }

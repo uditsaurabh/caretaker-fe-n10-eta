@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
 import { Upload, Button, message } from "antd";
 import { getDoctor } from "redux/userActions";
@@ -8,6 +9,7 @@ import OrangeButton from "common/button";
 import "./index.scss";
 
 const AddDoctor = ({ handleCloseDialog }) => {
+  const dispatch = useDispatch();
   const [doctorInfo, setDoctorInfo] = useState({});
   const [imageList, setImageList] = useState([]);
   const [load, setLoad] = useState(false);
@@ -35,23 +37,6 @@ const AddDoctor = ({ handleCloseDialog }) => {
     });
   };
 
-  // const error = () => {
-  //   message.error({
-  //     content: "Network error",
-  //     duration: 3,
-  //     className: "custom-class",
-  //     style: {
-  //       display: "flex",
-  //       position: "fixed",
-  //       left: "45%",
-  //       top: "5vh",
-  //       padding: "4px 8px",
-  //       borderRadius: "4px",
-  //       gap: "5px",
-  //     },
-  //   });
-  // };
-
   const boardDoctor = () => {
     const formData = new FormData();
     Object.keys(doctorInfo).forEach((key) =>
@@ -66,13 +51,9 @@ const AddDoctor = ({ handleCloseDialog }) => {
       if (res.data.status) {
         setLoad(false);
         success();
-        getDoctor();
+        dispatch(getDoctor());
         handleCloseDialog();
       }
-      // else {
-      //   setLoad(false);
-      //   error();
-      // }
     });
   };
 

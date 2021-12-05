@@ -11,7 +11,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const { dashboard, token } = useSelector((state) => state.userReducer);
   const [testName, setTestName] = useState(test[0]);
-  console.log(dashboard);
 
   useEffect(() => {
     const { value } = testName;

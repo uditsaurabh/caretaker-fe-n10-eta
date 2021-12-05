@@ -78,6 +78,34 @@
       overflow-x: hidden;
       scroll-behavior: smooth;
       max-height: 230px;
+      cursor: pointer;
+
+      .list-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        margin-top: 5px;
+        padding: 0px 8px;
+        border-radius: 4px;
+        transition: all 0.25s ease-in-out;
+        span {
+          visibility: hidden;
+
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+
+        &:hover {
+          background: var(--orange-color);
+          color: var(--white);
+
+          span {
+            visibility: visible;
+          }
+        }
+      }
     }
 
     input,

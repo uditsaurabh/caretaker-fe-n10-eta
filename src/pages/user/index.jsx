@@ -26,7 +26,7 @@ const User = () => {
 
   const success = () => {
     message.success({
-      content: "Success",
+      content: "Details updated",
       duration: 3,
       className: "custom-class",
       style: {

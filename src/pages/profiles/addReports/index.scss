@@ -1,0 +1,57 @@
+.add-reports-container {
+  position: fixed;
+  top: 13%;
+  left: 43%;
+  height: 75vh;
+  width: 300px;
+  background: rgba($color: #c4c4c4, $alpha: 1);
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+
+  .close-icon {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .upload {
+    margin-top: 20px;
+
+    .ant-upload-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .ant-upload-span {
+        width: 150px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 12px;
+        button {
+          background: var(--grey-background);
+          border: none;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+
+  .done-button {
+    position: absolute;
+    bottom: 10px;
+    right: 25%;
+  }
+}

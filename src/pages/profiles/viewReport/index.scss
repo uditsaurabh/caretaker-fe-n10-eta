@@ -1,0 +1,34 @@
+.view-reports {
+  position: fixed;
+  padding: 10px 20px;
+  top: 15%;
+  left: 30%;
+  width: 500px;
+  height: 300px;
+  border-radius: 4px;
+  background: rgba($color: #c4c4c4, $alpha: 1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+
+  .ant-image {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .ant-image-mask {
+    width: 100px;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .ant-image-preview-mask {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+  }
+}

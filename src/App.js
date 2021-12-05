@@ -8,6 +8,7 @@ import Header from "common/header";
 import Sidebar from "common/sidebar";
 import User from "pages/user";
 import Dashboard from "pages/dashboard";
+import AdminDashboard from "pages/adminDashboard";
 import DoctorDashboard from "pages/doctorDashboard";
 import Profiles from "pages/profiles";
 import Doctors from "pages/doctors";
@@ -63,6 +64,7 @@ const App = () => {
           <div className="pages">
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route path="/doctor-Dashboard" element={<DoctorDashboard />} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/doctors" element={<Doctors />} />

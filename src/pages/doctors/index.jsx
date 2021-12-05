@@ -21,7 +21,8 @@ const Doctors = ({ boarding }) => {
 
   const viewDoctor = (name) => {
     doctor.forEach((item) => {
-      if (item.user_name === name) {
+      const { user_name } = item;
+      if (user_name === name) {
         setOpenDoctor(item);
       }
     });

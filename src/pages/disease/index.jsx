@@ -5,6 +5,7 @@ import {
   CloseOutlined,
   CheckOutlined,
   IssuesCloseOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import { message } from "antd";
 import secureAxios from "services/http";
@@ -18,8 +19,9 @@ import "./index.scss";
 
 const Disease = () => {
   const dispatch = useDispatch();
-  const { disease, loading } = useSelector((state) => state.userReducer);
-  const { reqDisease } = useSelector((state) => state.userReducer);
+  const { disease, loading, reqDisease } = useSelector(
+    (state) => state.userReducer
+  );
   const [diseaseInput, setDiseaseInput] = useState("");
   const [open, setOpen] = useState(false);
   const [resolve, setResolve] = useState("");
@@ -27,11 +29,11 @@ const Disease = () => {
 
   useEffect(() => {
     dispatch(getDisease());
-  }, [disease]); //eslint-disable-line
+  }, []); //eslint-disable-line
 
   useEffect(() => {
     dispatch(getReqDisease());
-  }, [reqDisease]); //eslint-disable-line
+  }, []); //eslint-disable-line
 
   const handleResolve = (val) => {
     setResolve(val);
@@ -42,9 +44,9 @@ const Disease = () => {
     setOpen(false);
   };
 
-  const success = () => {
+  const success = (type) => {
     message.success({
-      content: "Disease added successfully",
+      content: type,
       duration: 3,
       className: "custom-class",
       style: {
@@ -64,8 +66,12 @@ const Disease = () => {
     secureAxios.post("/add-disease", { disease: diseaseInput }).then((res) => {
       if (res.data.status) {
         setLoad(false);
-        success();
+        success("Disease added successfully");
+        dispatch(getDisease());
         setDiseaseInput("");
+      } else {
+        setLoad(false);
+        success("Invalid data");
       }
     });
   };
@@ -97,7 +103,7 @@ const Disease = () => {
                         <div className="icons">
                           <CloseOutlined />
                           <IssuesCloseOutlined
-                            onClick={() => handleResolve(item.disease)}
+                            onClick={() => handleResolve(reqDisease)}
                           />
                           <CheckOutlined onClick={addDisease} />
                         </div>
@@ -115,7 +121,12 @@ const Disease = () => {
                 {disease &&
                   disease.map((item, i) => {
                     const { disease } = item;
-                    return <p key={i}>{toTitleCase(disease)}</p>;
+                    return (
+                      <div className="list-content" key={i}>
+                        <p>{toTitleCase(disease)}</p>
+                        <DeleteOutlined />
+                      </div>
+                    );
                   })}
               </div>
               <hr />
