@@ -4,7 +4,7 @@
   position: fixed;
   top: 20%;
   left: 40%;
-  background: rgba($color: #c4c4c4, $alpha: 1);
+  background: rgba($color: #000, $alpha: 0.8);
   border-radius: 4px;
   z-index: 1;
   padding: 40px;
@@ -15,6 +15,7 @@
     padding: 5px;
     cursor: pointer;
     font-size: 18px;
+    color: #fff;
     font-weight: 600;
 
     &:hover {
