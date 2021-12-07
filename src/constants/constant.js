@@ -23,9 +23,9 @@ export const defaultImage =
   "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg";
 
 export const test = [
-  { name: "RBC count", value: "rbc" },
-  { name: "WBC count", value: "wbc" },
-  { name: "Haemoglobin", value: "hm" },
+  { name: "RBC count", value: "rbc", normalValue: "4.5 - 5.5 millions/cumm" },
+  { name: "WBC count", value: "wbc", normalValue: "4000 - 10000 cells/cumm" },
+  { name: "Haemoglobin", value: "hm", normalValue: "13.0 - 17.0 g/dL" },
 ];
 
 export const showMessage = (type) => {

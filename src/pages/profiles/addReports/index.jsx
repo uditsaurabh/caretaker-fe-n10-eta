@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Upload, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import { getProfiles } from "redux/userActions";
 import secureAxios from "services/http";
 import { showMessage } from "constants/constant";
 import OrangeButton from "common/button";
 import "./index.scss";
 
 const AddReports = ({ closeProfile, profile }) => {
+  const dispatch = useDispatch();
   const { token } = useSelector((state) => state.userReducer);
   const [fileList, setFileList] = useState([]);
   const [load, setLoad] = useState(false);
@@ -27,6 +29,7 @@ const AddReports = ({ closeProfile, profile }) => {
       if (res.data.status) {
         setLoad(false);
         showMessage("Reports added");
+        dispatch(getProfiles(token));
         closeProfile();
       }
     });

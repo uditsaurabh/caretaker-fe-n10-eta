@@ -38,7 +38,7 @@ const Dashboard = () => {
               </h1>
               <LineChart dashboard={dashboard} />
               <p>
-                Biological Reference interval - <b> 13.0 - 17.0 g/dL</b>
+                Biological Reference interval - <b>{testName.normalValue}</b>
               </p>
             </div>
           </CommonCard>

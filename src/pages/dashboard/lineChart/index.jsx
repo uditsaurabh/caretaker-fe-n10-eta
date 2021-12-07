@@ -29,7 +29,7 @@ const LineChart = ({ dashboard }) => {
           type: "drag",
         }}
         color={{
-          pattern: ["#1f77b4", "#aec7e8", "#ff7f0e"],
+          pattern: ["#665191", "#ffa600", "#f95d6a"],
         }}
       />
     </div>

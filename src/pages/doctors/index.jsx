@@ -159,7 +159,7 @@ const Doctors = ({ boarding }) => {
   const {
     doctor_experience,
     doctorProfilePhoto,
-    dpctor_expertise,
+    doctor_expertise,
     user_name: doctorName,
     doctor_fees,
   } = openDoctor || "";
@@ -198,7 +198,7 @@ const Doctors = ({ boarding }) => {
                     const {
                       doctor_experience,
                       doctorProfilePhoto,
-                      dpctor_expertise,
+                      doctor_expertise,
                       user_name,
                     } = item;
                     return (
@@ -219,7 +219,7 @@ const Doctors = ({ boarding }) => {
                         />
                         <div className="info">
                           <p>Name - Dr. {user_name}</p>
-                          <p>Expertise - {dpctor_expertise}</p>
+                          <p>Expertise - {doctor_expertise}</p>
                           <p>Experience - {doctor_experience} years</p>
                         </div>
                       </div>
@@ -238,7 +238,7 @@ const Doctors = ({ boarding }) => {
                   />
                   <div className="doc-info">
                     <p>Name - Dr. {doctorName}</p>
-                    <p>Expertise - {dpctor_expertise}</p>
+                    <p>Expertise - {doctor_expertise}</p>
                     <p>Experience - {doctor_experience} years</p>
                     <p>Fees - INR {doctor_fees}/-</p>
                   </div>
