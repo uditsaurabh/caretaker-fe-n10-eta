@@ -22,6 +22,8 @@ const Profiles = () => {
   const [requestDisease, setRequestDisease] = useState(false);
   const [addReports, setAddReports] = useState(false);
   const [viewReports, setViewReports] = useState(false);
+  const [query, setQuery] = useState("");
+  const [profileList, setProfileList] = useState("");
   const [profile, setProfile] = useState(userProfiles[0]);
 
   const closeProfile = () => {
@@ -47,10 +49,24 @@ const Profiles = () => {
     });
   };
 
+  const updateInput = (input) => {
+    if (userProfiles) {
+      const filtered = userProfiles.filter((item) => {
+        return item.profile_details.name
+          .toLowerCase()
+          .includes(input.toLowerCase());
+      });
+      setQuery(input);
+      setProfileList(filtered);
+    }
+  };
+
   useEffect(() => {
     dispatch(getUser(token));
     dispatch(getProfiles(token));
   }, []); //eslint-disable-line
+
+  const profiles = profileList ? profileList : userProfiles;
 
   return (
     <>
@@ -66,7 +82,11 @@ const Profiles = () => {
             <div className="main-content">
               <div className="top-section">
                 <div className="search-bar">
-                  <TextInput placeholder="Search profile..." />
+                  <TextInput
+                    placeholder="Search profile..."
+                    value={query}
+                    change={(e) => updateInput(e.target.value)}
+                  />
                   <SearchOutlined />
                 </div>
                 <div className="icons">
@@ -75,7 +95,7 @@ const Profiles = () => {
               </div>
               <div className="profile-content">
                 {userProfiles.length > 0 &&
-                  userProfiles.map((item) => {
+                  profiles.map((item) => {
                     const { name, age, gender } = item.profile_details;
                     const image = item.profile_photo;
                     return (

@@ -10,4 +10,6 @@ export const REQ_DISEASE = "REQ_DISEASE";
 export const LOAD_PROFILES = "LOAD_PROFILES";
 export const LOADED_PROFILES = "LOADED_PROFILES";
 export const SET_TOKEN = "SET_TOKEN";
+export const GET_ADMIN = "GET_ADMIN";
 export const SET_DASHBOARD = "SET_DASHBOARD";
+export const SET_EMERGENCY = "SET_EMERGENCY";

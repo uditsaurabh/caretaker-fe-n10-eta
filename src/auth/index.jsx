@@ -94,7 +94,7 @@ const Login = ({ checkUser, setLoading, loading }) => {
                 disabled={number ? number.length < 13 : true}
                 text="Request OTP"
                 type={
-                  number.length < 13
+                  number?.length < 13
                     ? "orange-button disabled"
                     : "orange-button"
                 }

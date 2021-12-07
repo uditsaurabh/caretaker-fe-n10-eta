@@ -10,12 +10,13 @@
       gap: 50px;
 
       .stats-data {
-        background: rgba($color: #c4c4c4, $alpha: 1);
+        background: rgba($color: #000, $alpha: 0.7);
         width: 200px;
         height: 100px;
         border-radius: 4px;
         text-align: center;
         padding: 2px 5px;
+        color: var(--white);
 
         p {
           font-size: 18px;
@@ -29,5 +30,11 @@
       display: grid;
       grid-template-columns: 50% 50%;
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  .admin-container {
+    width: 100%;
   }
 }

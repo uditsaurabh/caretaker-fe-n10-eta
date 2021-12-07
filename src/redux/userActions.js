@@ -11,6 +11,8 @@ import {
   LOADED_PROFILES,
   SET_TOKEN,
   SET_DASHBOARD,
+  GET_ADMIN,
+  SET_EMERGENCY,
 } from "./userConstants";
 
 export const login = (access_token) => {
@@ -33,6 +35,38 @@ export const getDoctor = () => {
       .get("/get-doctors")
       .then((response) => {
         dispatch(setDoctor(response.data.data));
+        dispatch(loadingDone());
+      })
+      .catch((err) => {
+        dispatch(loadingDone());
+        throw err;
+      });
+  };
+};
+
+export const getAdmin = () => {
+  return (dispatch) => {
+    dispatch(loadingInit());
+    secureAxios
+      .get("/get-admin")
+      .then((response) => {
+        dispatch(setAdmin(response.data.data));
+        dispatch(loadingDone());
+      })
+      .catch((err) => {
+        dispatch(loadingDone());
+        throw err;
+      });
+  };
+};
+
+export const getEmergency = (pid) => {
+  return (dispatch) => {
+    dispatch(loadingInit());
+    secureAxios
+      .post("/get_emergency_details", { pid })
+      .then((response) => {
+        dispatch(setEmergency(response.data.data));
         dispatch(loadingDone());
       })
       .catch((err) => {
@@ -130,9 +164,23 @@ export const setDashboard = (obj) => {
   };
 };
 
+export const setEmergency = (obj) => {
+  return {
+    type: SET_EMERGENCY,
+    payload: obj,
+  };
+};
+
 export const setToken = (obj) => {
   return {
     type: SET_TOKEN,
+    payload: obj,
+  };
+};
+
+export const setAdmin = (obj) => {
+  return {
+    type: GET_ADMIN,
     payload: obj,
   };
 };

@@ -6,13 +6,14 @@
   border-radius: 4px;
   top: 15%;
   left: 35%;
-  background: rgba($color: #c0c0c0, $alpha: 1);
+  background: rgba($color: #000, $alpha: 0.8);
 
   .close-icon {
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
+    color: var(--white);
     font-size: 18px;
 
     &:hover {

@@ -9,13 +9,13 @@ import {
 } from "@ant-design/icons";
 import secureAxios from "services/http";
 import { toTitleCase, showMessage } from "constants/constant";
-import ResolveDialog from "./resolve";
 import CommonCard from "common/card";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
 import PreLoader from "common/loader";
-import "./index.scss";
+import ResolveDialog from "./resolve";
 import RejectDisease from "./reject";
+import "./index.scss";
 
 const Disease = () => {
   const dispatch = useDispatch();
@@ -70,6 +70,15 @@ const Disease = () => {
       } else {
         setRejectLoad(false);
         showMessage("Invalid data");
+      }
+    });
+  };
+
+  const deleteDisease = (val) => {
+    secureAxios.post("/delete-disease", { disease: val }).then((res) => {
+      if (res.data.status) {
+        dispatch(getDisease());
+        showMessage(`${toTitleCase(val)} removed`);
       }
     });
   };
@@ -130,7 +139,9 @@ const Disease = () => {
                     return (
                       <div className="list-content" key={i}>
                         <p>{toTitleCase(disease)}</p>
-                        <DeleteOutlined />
+                        <DeleteOutlined
+                          onClick={() => deleteDisease(disease)}
+                        />
                       </div>
                     );
                   })}
@@ -155,6 +166,7 @@ const Disease = () => {
               resolve={resolve}
               diseaseList={disease}
               closeResolve={closeResolve}
+              rejectDisease={rejectDisease}
             />
           )}
           {openReject && (

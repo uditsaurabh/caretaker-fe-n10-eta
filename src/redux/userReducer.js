@@ -10,6 +10,8 @@ import {
   LOAD_PROFILES,
   SET_TOKEN,
   SET_DASHBOARD,
+  GET_ADMIN,
+  SET_EMERGENCY,
 } from "./userConstants";
 import produce from "immer";
 
@@ -22,6 +24,8 @@ const initialState = {
   disease: [],
   reqDisease: [],
   dashboard: {},
+  admin: {},
+  emergency: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -56,6 +60,12 @@ const userReducer = (state = initialState, action) => {
         return;
       case SET_TOKEN:
         draft.token = action.payload;
+        return;
+      case GET_ADMIN:
+        draft.admin = action.payload;
+        return;
+      case SET_EMERGENCY:
+        draft.emergency = action.payload;
         return;
       case SET_DASHBOARD:
         draft.dashboard = action.payload;

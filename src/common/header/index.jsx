@@ -8,8 +8,8 @@ const Header = ({ handleLogout }) => {
   const [open, setOpen] = useState(false);
   const container = useRef(false);
   const location = useLocation();
-  let pathnName = location.pathname;
-  pathnName = pathnName.slice(1, pathnName.length);
+  let pathName = location.pathname;
+  pathName = pathName.slice(1, pathName.length);
 
   const handleClickOutside = (e) => {
     if (!e.target.closest(`.${container?.current?.className}`) && open) {
@@ -21,23 +21,26 @@ const Header = ({ handleLogout }) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   });
-
   return (
-    <div className="header">
-      <p>{pathnName ? toTitleCase(pathnName) : "Dashboard"}</p>
-      <div className="container" ref={container}>
-        <div onClick={() => setOpen((open) => !open)}>
-          <UserOutlined />
-        </div>
-        {open && (
-          <div className="dropdown">
-            <ul>
-              <li onClick={handleLogout}>Logout</li>
-            </ul>
+    <>
+      {pathName !== "emerygencydetails" && (
+        <div className="header">
+          <p>{pathName ? toTitleCase(pathName) : "Dashboard"}</p>
+          <div className="container" ref={container}>
+            <div onClick={() => setOpen((open) => !open)}>
+              <UserOutlined />
+            </div>
+            {open && (
+              <div className="dropdown">
+                <ul>
+                  <li onClick={handleLogout}>Logout</li>
+                </ul>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

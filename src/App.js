@@ -18,6 +18,7 @@ import Disease from "pages/disease";
 import DoctorBoarding from "pages/doctorOnboard";
 import NotFound from "pages/notFound";
 import "./App.scss";
+import Emergency from "pages/emergency";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -64,37 +65,40 @@ const App = () => {
           setLoading={setOtpLoading}
           loading={otpLoading}
         />
-      ) : user_type ? (
+      ) : (
         <Router>
           <Header handleLogout={handleLogout} />
           <Sidebar userType={user_type} />
           <div className="pages">
-            <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/admin-dashboard" element={<AdminDashboard />} />
-              <Route path="/doctor-Dashboard" element={<DoctorDashboard />} />
-              <Route path="/profiles" element={<Profiles />} />
-              <Route path="/doctors" element={<Doctors />} />
-              <Route path="/user" element={<User />} />
-              <Route path="/disease" element={<Disease />} />
-              <Route path="/on-boarding" element={<DoctorBoarding />} />
-              <Route path="*" element={<NotFound />} />
-              {user_type === "user" ? (
-                <Route path="/" element={<Dashboard />} />
-              ) : user_type === "admin" ? (
-                <Route path="/" element={<AdminDashboard />} />
-              ) : (
-                <Route path="/" element={<DoctorDashboard />} />
-              )}
-            </Routes>
+            {user_type ? (
+              <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/admin-dashboard" element={<AdminDashboard />} />
+                <Route path="/doctor-Dashboard" element={<DoctorDashboard />} />
+                <Route path="/profiles" element={<Profiles />} />
+                <Route path="/doctors" element={<Doctors />} />
+                <Route path="/user" element={<User />} />
+                <Route path="/disease" element={<Disease />} />
+                <Route path="/on-boarding" element={<DoctorBoarding />} />
+                <Route path="/emerygencydetails" element={<Emergency />} />
+                <Route path="*" element={<NotFound />} />
+                {user_type === "user" ? (
+                  <Route path="/" element={<Dashboard />} />
+                ) : user_type === "admin" ? (
+                  <Route path="/" element={<AdminDashboard />} />
+                ) : (
+                  <Route path="/" element={<DoctorDashboard />} />
+                )}
+              </Routes>
+            ) : (
+              <div className="loading">
+                <CommonCard>
+                  <PreLoader />
+                </CommonCard>
+              </div>
+            )}
           </div>
         </Router>
-      ) : (
-        <div className="main-loading">
-          <CommonCard>
-            <PreLoader />
-          </CommonCard>
-        </div>
       )}
     </div>
   );

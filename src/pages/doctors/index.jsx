@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { SearchOutlined, UserAddOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
+import { DyteMeeting } from "dyte-client";
 import { getDoctor, getUser } from "redux/userActions";
 import { showMessage, defaultImage } from "constants/constant";
 import secureAxios from "services/http";
+import createroom from "services/createRoom";
 import CommonCard from "common/card";
 import OrangeButton from "common/button/index";
 import TextInput from "common/input";
@@ -13,15 +15,18 @@ import "./index.scss";
 
 const Doctors = ({ boarding }) => {
   const dispatch = useDispatch();
-  const { doctor, loading, token } = useSelector((state) => state.userReducer);
+  const { doctor, loading, token, user } = useSelector(
+    (state) => state.userReducer
+  );
   const [openDoctor, setOpenDoctor] = useState(doctor[0]);
   const [addDoctor, setAddDoctor] = useState(false);
+  const [query, setQuery] = useState("");
+  const [doctorList, setDoctorList] = useState("");
   const [load, setLoad] = useState(false);
-
-  useEffect(() => {
-    dispatch(getDoctor());
-    dispatch(getUser(token));
-  }, []); //eslint-disable-line
+  const [authToken, setAuthToken] = useState("");
+  const [isCall, setIsCall] = useState(false);
+  const { phone_number, user_name } = user?.data || "";
+  const { meetingId, roomName } = openDoctor || "";
 
   const viewDoctor = (name) => {
     doctor.forEach((item) => {
@@ -34,6 +39,29 @@ const Doctors = ({ boarding }) => {
 
   const handleCloseDialog = () => {
     setAddDoctor(false);
+  };
+
+  const handleCall = () => {
+    if (meetingId) {
+      createroom
+        .post(`/meetings/${meetingId}/participant`, {
+          userDetails: {
+            name: user_name,
+          },
+          clientSpecificId: phone_number,
+          roleName: "host",
+        })
+        .then((res) => {
+          const { data } = res;
+          if (data.success) {
+            const { authToken } = data.data.authResponse;
+            setAuthToken(authToken);
+          }
+        })
+        .catch((error) => {
+          throw error;
+        });
+    }
   };
 
   const loadScript = (src) => {
@@ -96,6 +124,7 @@ const Doctors = ({ boarding }) => {
         const result = await secureAxios.post("/payment_success", data);
         if (result.data.status) {
           showMessage("Payment success");
+          setIsCall(true);
         }
       },
       prefill: {
@@ -112,6 +141,21 @@ const Doctors = ({ boarding }) => {
     paymentObject.open();
   };
 
+  const updateInput = (input) => {
+    if (doctor) {
+      const filtered = doctor.filter((item) => {
+        return item.user_name.toLowerCase().includes(input.toLowerCase());
+      });
+      setQuery(input);
+      setDoctorList(filtered);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getDoctor());
+    dispatch(getUser(token));
+  }, []); //eslint-disable-line
+
   const {
     doctor_experience,
     doctorProfilePhoto,
@@ -120,6 +164,7 @@ const Doctors = ({ boarding }) => {
     doctor_fees,
   } = openDoctor || "";
 
+  const doctorProfiles = doctorList ? doctorList : doctor;
   return (
     <>
       {loading ? (
@@ -134,7 +179,11 @@ const Doctors = ({ boarding }) => {
             <div className="doctor-list">
               <div className="doc-top">
                 <div className="search-bar">
-                  <TextInput placeholder="Search doctor..." />
+                  <TextInput
+                    placeholder="Search doctor..."
+                    value={query}
+                    change={(e) => updateInput(e.target.value)}
+                  />
                   <SearchOutlined />
                 </div>
                 {boarding && (
@@ -145,7 +194,7 @@ const Doctors = ({ boarding }) => {
               </div>
               <div className="list-content">
                 {doctor.length > 0 &&
-                  doctor.map((item, i) => {
+                  doctorProfiles.map((item, i) => {
                     const {
                       doctor_experience,
                       doctorProfilePhoto,
@@ -200,9 +249,9 @@ const Doctors = ({ boarding }) => {
                         For a consultation please pay fees
                       </span>
                       <OrangeButton
-                        text="Pay"
+                        text={isCall ? "Call" : "Pay"}
                         type="orange-button"
-                        click={handlePay}
+                        click={isCall ? handleCall : handlePay}
                         loading={load}
                       />
                     </>
@@ -212,6 +261,16 @@ const Doctors = ({ boarding }) => {
             </div>
           </CommonCard>
           {addDoctor && <AddDoctor handleCloseDialog={handleCloseDialog} />}
+          {authToken && phone_number && (
+            <DyteMeeting
+              onInit={() => {}}
+              clientId={phone_number}
+              meetingConfig={{
+                authToken,
+                roomName,
+              }}
+            />
+          )}
         </div>
       )}
     </>

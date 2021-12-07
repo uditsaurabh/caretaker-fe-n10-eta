@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
 import { showMessage } from "constants/constant";
 import secureAxios from "services/http";
 import OrangeButton from "common/button";
-import { getReqDisease } from "redux/userActions";
 
-const ResolveDialog = ({ resolve, diseaseList, closeResolve }) => {
-  const dispatch = useDispatch();
+const ResolveDialog = ({
+  resolve,
+  diseaseList,
+  closeResolve,
+  rejectDisease,
+}) => {
   const [selectedDisease, setSelectedDisease] = useState("");
   const [mergeLoad, setMergeLoad] = useState(false);
 
@@ -22,8 +24,8 @@ const ResolveDialog = ({ resolve, diseaseList, closeResolve }) => {
         if (res.data.status) {
           setMergeLoad(false);
           showMessage("Merge request success");
+          rejectDisease(resolve);
           closeResolve();
-          dispatch(getReqDisease());
         }
       });
   };

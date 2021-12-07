@@ -34,3 +34,15 @@ select {
   background: rgba(196, 196, 196, 0.5);
   color: rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 600px) {
+  .app {
+    .pages {
+      z-index: -1;
+      position: fixed;
+      top: 10%;
+      left: 0px;
+      width: 100%;
+    }
+  }
+}
