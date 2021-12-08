@@ -19,7 +19,8 @@ const AdminDashboard = () => {
       <CommonCard>
         <div className="admin-content">
           <div className="stats">
-            {admin.length > 0 &&
+            {admin &&
+              admin.length > 0 &&
               admin.map((item) => {
                 const { title, count, id } = item;
                 return (
@@ -31,12 +32,16 @@ const AdminDashboard = () => {
               })}
           </div>
           <div className="charts">
-            <div className="line-chart">
-              <AdminLineChart />
-            </div>
-            <div className="pie-chart">
-              <AdminPieChart />
-            </div>
+            {admin && admin.length > 0 && (
+              <div className="line-chart">
+                <AdminLineChart />
+              </div>
+            )}
+            {admin && admin.length > 0 && (
+              <div className="pie-chart">
+                <AdminPieChart />
+              </div>
+            )}
           </div>
         </div>
       </CommonCard>

@@ -35,6 +35,46 @@
 
 @media (max-width: 1000px) {
   .admin-container {
-    width: 100%;
+    width: 95%;
+
+    .stats {
+      .charts {
+        grid-template-columns: 40% 40%;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    width: 160%;
+    height: 110vh !important;
+    background: #fff;
+  }
+
+  .admin-content {
+    .stats {
+      .stats-data {
+        width: 180px !important;
+      }
+    }
+    .charts {
+      margin-top: 50px;
+      grid-template-columns: 80% !important;
+      gap: 50px;
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .admin-container {
+    width: 170% !important;
+    .admin-content {
+      .stats {
+        .stats-data {
+          width: 100px !important;
+        }
+      }
+    }
   }
 }
