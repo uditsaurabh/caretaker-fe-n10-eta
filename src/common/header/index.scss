@@ -61,3 +61,11 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .header {
+    p {
+      margin-left: 20px;
+    }
+  }
+}

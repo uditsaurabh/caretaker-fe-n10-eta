@@ -59,3 +59,21 @@
     right: 25%;
   }
 }
+
+@media (max-width: 700px) {
+  .add-reports-container {
+    left: 33%;
+  }
+}
+
+@media (max-width: 600px) {
+  .add-reports-container {
+    left: 20%;
+  }
+}
+
+@media (max-width: 500px) {
+  .add-reports-container {
+    left: 10%;
+  }
+}

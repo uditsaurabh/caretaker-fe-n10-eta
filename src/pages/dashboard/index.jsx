@@ -15,6 +15,14 @@ const Dashboard = () => {
   );
   const [testName, setTestName] = useState(test[0]);
 
+  const handleChange = (val) => {
+    test.forEach((item) => {
+      if (item.value === val) {
+        setTestName(item);
+      }
+    });
+  };
+
   useEffect(() => {
     const { value } = testName;
     dispatch(getUser(token));
@@ -33,9 +41,26 @@ const Dashboard = () => {
         <div className="dashboard">
           <CommonCard>
             <div className="graph">
-              <h1>
-                Blood report <span>- {testName.name}</span>
-              </h1>
+              <div className="top-content">
+                <h1>
+                  Blood report <span>- {testName.name}</span>
+                </h1>
+                <select
+                  className="test-select"
+                  name="testName"
+                  onChange={(e) => handleChange(e.target.value)}
+                  value={testName.value}
+                >
+                  {test.map((item, i) => {
+                    const { name, value } = item;
+                    return (
+                      <option key={i} value={value}>
+                        {name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
               <LineChart dashboard={dashboard} />
               <p>
                 Biological Reference interval - <b>{testName.normalValue}</b>

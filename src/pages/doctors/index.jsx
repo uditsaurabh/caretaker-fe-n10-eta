@@ -28,6 +28,7 @@ const Doctors = ({ boarding }) => {
   const { phone_number, user_name } = user?.data || "";
   const { meetingId, roomName } = openDoctor || "";
 
+  // to view the profile of doctor
   const viewDoctor = (name) => {
     doctor.forEach((item) => {
       const { user_name } = item;
@@ -41,6 +42,7 @@ const Doctors = ({ boarding }) => {
     setAddDoctor(false);
   };
 
+  //for adding user in the call
   const handleCall = () => {
     if (meetingId) {
       createroom
@@ -56,6 +58,7 @@ const Doctors = ({ boarding }) => {
           if (data.success) {
             const { authToken } = data.data.authResponse;
             setAuthToken(authToken);
+            setIsCall(false);
           }
         })
         .catch((error) => {
@@ -64,6 +67,7 @@ const Doctors = ({ boarding }) => {
     }
   };
 
+  //script for razorpay
   const loadScript = (src) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -78,6 +82,7 @@ const Doctors = ({ boarding }) => {
     });
   };
 
+  //razor pay logic
   const handlePay = async () => {
     setLoad(true);
     const res = await loadScript(

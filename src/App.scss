@@ -39,9 +39,9 @@ select {
   .app {
     .pages {
       z-index: -1;
-      position: fixed;
+      position: absolute;
       top: 10%;
-      left: 0px;
+      left: 15px;
       width: 100%;
     }
   }

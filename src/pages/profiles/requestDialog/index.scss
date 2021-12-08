@@ -33,3 +33,21 @@
     gap: 20px;
   }
 }
+
+@media (max-width: 950px) {
+  .request-cont {
+    left: 28%;
+  }
+}
+
+@media (max-width: 600px) {
+  .request-cont {
+    left: 18%;
+  }
+}
+
+@media (max-width: 500px) {
+  .request-cont {
+    left: 10%;
+  }
+}
