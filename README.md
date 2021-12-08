@@ -1,70 +1,195 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+    <img src="https://res.cloudinary.com/n10eta/image/upload/v1638979237/readme/UntitledcareTracker_sskm5p.png" alt="Logo" width="120" >
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">Care Tracker Frontend</h1>
+<h3 align="center">
+	<a href="https://caretracker.netlify.app/">Live URL</a>
+</h3>
+  
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#artefacts">Artefacts</a></li>
+        <li><a href="#backend-repo">Backend Repo</a></li>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#test-credentials">Test Credentials</a></li>
+        <li><a href="#tools-and-libraries">Tools And Libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributors">Contributors</a></li>
+  </ol>
+</details>
 
-## Available Scripts
+<!-- ABOUT THE PROJECT -->
 
-In the project directory, you can run:
+## About The Project
 
-### `npm start`
+[![Product Name Screen Shot][product-screenshot]](https://caretracker.netlify.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+We are living in the age of pandemics, where taking care of personal and loved ones health is the most important. When it comes to storing and searching different medical reports physically in our home is really a difficult task. With care tracker, we are providing an application where you can store your reports in one place and track your health on the basis of these reports. We are also providing different features like doctor consultation, the emergency feature which can be a great help during some emergencies.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Artefacts
 
-### `npm test`
+<a href="https://drive.google.com/file/d/1lKdXfwmdJWLH41D0jVP6QOyvKEzCW4zr/view">PRD</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1Md6oDJUflZffX13rnuXd4OpIfV62YRZm/view?usp=sharing">HLD</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1U1ArjVvM7aBLXzaLXK_ItxYeRzZRy5w8/view?usp=sharing">One Pager</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a> -->
 
-### `npm run build`
+&nbsp;&nbsp;&nbsp;&nbsp;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- <a href="https://drive.google.com/file/d/1rL3K0NTI91a6QQmy0J6BE9FFQSvwDgVY/view?usp=sharing">Coding Practices</a> -->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend Repo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Backend Repo](https://github.com/pesto-students/caretaker-be-n10-eta)
 
-### `npm run eject`
+**Mission:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To empower everyone to take health seriously and can track their health ease, as we all know health is wealth.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Vision:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Our vision is to provide basic information about someone who is facing some emergency so that proper treatment, as well as contact with the family, can be done.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Goals:**
 
-## Learn More
+- Simple solutions for the problems.
+- Help the people in need.
+- To make the proper awareness about tracking health.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Features:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- A dashboard to track the heath on the basis of reports uploaded.
+- Consultation with doctor.
+- Generate QR code for some emergency.
+- Simple and consistent UI.
+- Multiple Payment Option.
 
-### Code Splitting
+### Built With
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<p align="center">
+	<a href="https://www.javascript.com/">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979947/readme/128px-JavaScript-logo_vlutit.png" title="JavaScript" height="100">
+	</a>
+	<a href="https://reactjs.org/">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979422/readme/react-logo_aiqchy_ppt4p0.png" title="React" height="100">
+	</a>
+	<a href="https://redux.js.org/">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979437/readme/redux-logo_g2vd7e_jcex50.png" title="Redux" height="100">
+	</a>
+	<a href="https://firebase.google.com/">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979578/readme/firebase-logo_v8dzdj_cjreko.png" title="Firebase" height="100">
+	</a>
+	<a href="https://github.com/features/actions">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979457/readme/github-action-logo_yamrxz_sbthhy.png" title="Github Actions" height="100">
+	</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="https://razorpay.com/">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979465/readme/Razorpay-logo_bzojzt_qwpghx.png" title="Razorpay Payment Gateway" height="100">
+	</a>
+	<a href="https://www.netlify.com/">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638980033/readme/Netlify-Logo.wine_f5rioq.png" title="Netlify" height="100">
+	</a>
+</p>
 
-### Analyzing the Bundle Size
+<!-- GETTING STARTED -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Getting Started
 
-### Making a Progressive Web App
+Following are the simple steps to run this project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Prerequisites
 
-### Advanced Configuration
+- npm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  ```sh
+  npm install npm@latest -g
+  ```
 
-### Deployment
+- firebase
+  ```sh
+  npm install firebase -g
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Installation
 
-### `npm run build` fails to minify
+1. Clone the repo
+   ```sh
+   git clonehttps://github.com/pesto-students/caretaker-fe-n10-eta.git careTracker-fe
+   ```
+2. Set environment variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+REACT_APP_SERVER_URL=https://stark-island-21254.herokuapp.com/
+REACT_APP_ORG_ID=
+REACT_APP_DYTE_URL=
+REACT_APP_FIREBASE_API=
+REACT_APP_AUTH_DOMAIN=
+REACT_APP_PROJECT_ID=
+REACT_APP_STORAGE_BUCKET=
+REACT_APP_MESSAGING_SENDER_ID=
+REACT_APP_APP_ID=
+REACT_APP_MEASUREMENT_ID=
+REACT_APP_PAY_ID=
+
+3. Install NPM packages
+   ```sh
+   cd caretaker-fe-n10-eta && npm install
+   ```
+4. Run
+   ```sh
+   npm start
+   ```
+5. Open http://localhost:3000 to view it in the browser
+
+6. Run Test cases
+   ```sh
+   npm test
+   ```
+
+## Test Credentials
+
+_To login in the app as user use no. 9999999999 and otp 111111_
+_To login in the app as doctor use no. 8888888888 and otp 222222_  
+_To login in the app as admin use no. 7777777777 and otp 333333_
+
+<!--Tools-->
+
+## Tools and Libraries
+
+- [Redux-Tool-Kit] - State Management
+- [Jest] - Unit testing
+- [React-testing-Library] - Integration testing
+- [Dyte] - Call SDK
+- [Billboard] - Charts
+- [Prettier] - Automatic code formatting
+- [AntDesign] - UI library
+
+<!-- Contributors -->
+
+## Contributors
+
+Akshay Awasthi - [GiHub](https://github.com/akshayawasthi3) - [Email](mailto:akshayawasthi3@gmail.com)
+
+Kapil Harode - [GiHub](https://github.com/kapilharode) - [Email](mailto:kapilharodek4@gmail.com)
+
+Dinesh Yadav - [GiHub](https://github.com/dinesh0191) - [Email](mailto:dinesh0191@gmail.com)
+
+<!-- [product-screenshot]: https://res.cloudinary.com/emarat/image/upload/v1631802213/homepage-screenshot_n2dxwk.png -->

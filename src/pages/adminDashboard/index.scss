@@ -10,12 +10,13 @@
       gap: 50px;
 
       .stats-data {
-        background: rgba($color: #c4c4c4, $alpha: 1);
+        background: rgba($color: #000, $alpha: 0.7);
         width: 200px;
         height: 100px;
         border-radius: 4px;
         text-align: center;
         padding: 2px 5px;
+        color: var(--white);
 
         p {
           font-size: 18px;
@@ -28,6 +29,52 @@
       padding: 0px 25px;
       display: grid;
       grid-template-columns: 50% 50%;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .admin-container {
+    width: 95%;
+
+    .stats {
+      .charts {
+        grid-template-columns: 40% 40%;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    width: 160%;
+    height: 110vh !important;
+    background: #fff;
+  }
+
+  .admin-content {
+    .stats {
+      .stats-data {
+        width: 180px !important;
+      }
+    }
+    .charts {
+      margin-top: 50px;
+      grid-template-columns: 80% !important;
+      gap: 50px;
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .admin-container {
+    width: 170% !important;
+    .admin-content {
+      .stats {
+        .stats-data {
+          width: 100px !important;
+        }
+      }
     }
   }
 }

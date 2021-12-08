@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import secureAxios from "services/http";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
-import "antd/lib/message/style/index.css";
+import { showMessage } from "constants/constant";
 import "./index.scss";
 
 const RequestDialog = ({ closeRequest }) => {
@@ -17,28 +16,11 @@ const RequestDialog = ({ closeRequest }) => {
     setDetails(data);
   };
 
-  const success = () => {
-    message.success({
-      content: "Request sent",
-      duration: 3,
-      className: "custom-class",
-      style: {
-        display: "flex",
-        position: "fixed",
-        left: "45%",
-        top: "5vh",
-        padding: "4px 8px",
-        borderRadius: "4px",
-        gap: "5px",
-      },
-    });
-  };
-
   const requestDisease = () => {
     setLoad(true);
     secureAxios.post("/add-req-disease", details).then((res) => {
       if (res.data.status) {
-        success();
+        showMessage("Request sent");
         setLoad(false);
         closeRequest();
       }

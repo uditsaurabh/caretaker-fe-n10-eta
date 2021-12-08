@@ -3,7 +3,6 @@
   grid-template-columns: 70% 20%;
   gap: 2%;
   position: relative;
-  overflow-y: scroll;
 
   .main-content {
     padding: 30px;
@@ -165,6 +164,8 @@
 
 @media (max-width: 940px) {
   .profiles {
+    width: 92%;
+    grid-template-columns: 70% 25%;
     p {
       font-size: 11px !important;
     }
@@ -185,7 +186,8 @@
 
 @media (max-width: 800px) {
   .profiles {
-    grid-template-columns: 70% 18%;
+    width: 90%;
+    grid-template-columns: 70% 23%;
     p {
       font-size: 10px !important;
     }
@@ -194,7 +196,7 @@
       padding: 15px;
     }
     .profile-detail {
-      padding: 5px !important;
+      padding: 10px 5px !important;
 
       button {
         margin-top: 15% !important;
@@ -206,7 +208,8 @@
 
 @media (max-width: 750px) {
   .profiles {
-    grid-template-columns: 70% 20% !important;
+    width: 87%;
+    grid-template-columns: 70% 25%;
     p {
       font-size: 9px !important;
     }
@@ -214,11 +217,6 @@
     .main-content {
       padding: 12px;
       .top-section {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start;
-        gap: 15px;
-
         .search-bar {
           width: 60%;
         }
@@ -228,7 +226,7 @@
       }
     }
     .profile-detail {
-      padding: 3px !important;
+      padding: 10px 3px !important;
 
       .qr-code,
       button {
@@ -238,38 +236,20 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .profiles {
-    grid-template-columns: 83% !important;
-    margin-top: -30px;
-    p {
-      font-size: 10px !important;
-    }
+    width: 94%;
+    grid-template-columns: 98% !important;
 
-    .main-content {
-      padding: 12px;
-    }
     .profile-detail {
-      padding: 20px !important;
-
-      .details {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 20px !important;
-
-        img {
-          width: 85px !important;
-          height: 85px !important;
-        }
-      }
-
       .qr-code {
-        display: none;
+        margin-top: 6% !important;
       }
-      button {
-        margin-top: 10px !important;
-        width: 90px !important;
-      }
+    }
+
+    .profile-dialog {
+      left: 15px;
+      top: 10%;
     }
   }
 }

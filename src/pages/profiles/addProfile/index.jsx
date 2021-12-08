@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Upload, Button, message } from "antd";
+import { Upload, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { getProfiles } from "redux/userActions";
 import secureAxios from "services/http";
@@ -8,7 +8,12 @@ import RequestDialog from "../requestDialog";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
 import TextInput from "common/input";
-import { bloodGroup, gender, defaultImage } from "constants/constant";
+import {
+  bloodGroup,
+  gender,
+  defaultImage,
+  showMessage,
+} from "constants/constant";
 import "./index.scss";
 
 const AddProfile = ({
@@ -38,23 +43,6 @@ const AddProfile = ({
     if (val === "request") {
       openRequest();
     }
-  };
-
-  const showMessage = (type) => {
-    message.success({
-      content: type,
-      duration: 3,
-      className: "custom-class",
-      style: {
-        display: "flex",
-        position: "fixed",
-        left: "45%",
-        top: "5vh",
-        padding: "4px 8px",
-        borderRadius: "4px",
-        gap: "5px",
-      },
-    });
   };
 
   const addNewMember = (e) => {

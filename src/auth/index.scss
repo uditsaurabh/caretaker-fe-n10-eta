@@ -61,12 +61,21 @@
   }
 }
 
+@media (max-width: 850px) {
+  .login {
+    .login-form {
+      margin-top: 20% !important;
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .login {
     display: grid;
     grid-template-columns: 100% 0%;
     height: 100vh;
     .login-form {
+      margin-top: 30% !important;
       display: flex;
       align-items: center;
       justify-content: center;

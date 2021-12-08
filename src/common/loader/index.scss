@@ -34,3 +34,9 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 500px) {
+  .pre-loader {
+    left: 43% !important;
+  }
+}

@@ -135,3 +135,43 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .doctors {
+    width: 92%;
+    grid-template-columns: 70% 25%;
+
+    p {
+      font-size: 11px !important;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .doctors {
+    width: 87%;
+    grid-template-columns: 70% 28%;
+
+    .doctor-list {
+      .list-content {
+        grid-template-columns: 80%;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .doctors {
+    height: 100% !important;
+    width: 94%;
+    grid-template-columns: 98%;
+
+    .doctor-info {
+      .details {
+        button {
+          margin-top: 10%;
+        }
+      }
+    }
+  }
+}

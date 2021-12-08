@@ -29,6 +29,10 @@
       opacity: 0.5;
     }
 
+    .hide {
+      display: none;
+    }
+
     .dropdown {
       position: absolute;
       top: 100%;
@@ -54,6 +58,14 @@
           opacity: 0.5;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .header {
+    p {
+      margin-left: 20px;
     }
   }
 }

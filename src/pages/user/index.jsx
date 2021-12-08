@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Upload, Button, message } from "antd";
+import { Upload, Button } from "antd";
 import { getUser } from "redux/userActions";
+import { showMessage } from "constants/constant";
 import secureAxios from "services/http";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
@@ -24,23 +25,6 @@ const User = () => {
     setDetail(updateData);
   };
 
-  const success = () => {
-    message.success({
-      content: "Details updated",
-      duration: 3,
-      className: "custom-class",
-      style: {
-        display: "flex",
-        position: "fixed",
-        left: "45%",
-        top: "5vh",
-        padding: "4px 8px",
-        borderRadius: "4px",
-        gap: "5px",
-      },
-    });
-  };
-
   const handleSave = () => {
     const token = localStorage.getItem("user");
 
@@ -55,7 +39,7 @@ const User = () => {
     secureAxios.post("/updateAccountDetails", formData).then((res) => {
       setLoad(true);
       if (res.data.status) {
-        success();
+        showMessage("Details updated");
         setLoad(false);
         history("/profiles");
       }

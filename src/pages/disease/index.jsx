@@ -1,64 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getDisease, getReqDisease } from "redux/userActions";
+import { getDisease, getReqDisease, getUser } from "redux/userActions";
 import {
   CloseOutlined,
   CheckOutlined,
   IssuesCloseOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { message } from "antd";
 import secureAxios from "services/http";
-import { toTitleCase } from "constants/constant";
-import ResolveDialog from "./resolve";
+import { toTitleCase, showMessage } from "constants/constant";
 import CommonCard from "common/card";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
 import PreLoader from "common/loader";
+import ResolveDialog from "./resolve";
+import RejectDisease from "./reject";
 import "./index.scss";
 
 const Disease = () => {
   const dispatch = useDispatch();
-  const { disease, loading, reqDisease } = useSelector(
+  const { disease, loading, reqDisease, token } = useSelector(
     (state) => state.userReducer
   );
   const [diseaseInput, setDiseaseInput] = useState("");
   const [open, setOpen] = useState(false);
+  const [openReject, setopenReject] = useState(false);
   const [resolve, setResolve] = useState("");
   const [load, setLoad] = useState(false);
+  const [rejectLoad, setRejectLoad] = useState(false);
 
-  useEffect(() => {
-    dispatch(getDisease());
-  }, []); //eslint-disable-line
-
-  useEffect(() => {
-    dispatch(getReqDisease());
-  }, []); //eslint-disable-line
-
-  const handleResolve = (val) => {
+  const handleResolve = (node, val) => {
+    if (node === "resolve") {
+      setOpen(true);
+    }
+    if (node === "reject") {
+      setopenReject(true);
+    }
     setResolve(val);
-    setOpen(true);
   };
 
   const closeResolve = () => {
     setOpen(false);
-  };
-
-  const success = (type) => {
-    message.success({
-      content: type,
-      duration: 3,
-      className: "custom-class",
-      style: {
-        display: "flex",
-        position: "fixed",
-        left: "45%",
-        top: "5vh",
-        padding: "4px 8px",
-        borderRadius: "4px",
-        gap: "5px",
-      },
-    });
+    setopenReject(false);
   };
 
   const addDisease = () => {
@@ -66,15 +49,45 @@ const Disease = () => {
     secureAxios.post("/add-disease", { disease: diseaseInput }).then((res) => {
       if (res.data.status) {
         setLoad(false);
-        success("Disease added successfully");
+        showMessage("Disease added successfully");
         dispatch(getDisease());
         setDiseaseInput("");
       } else {
         setLoad(false);
-        success("Invalid data");
+        showMessage("Invalid data");
       }
     });
   };
+
+  const rejectDisease = (val) => {
+    setRejectLoad(true);
+    secureAxios.post("/delete-req-disease", { reqDisease: val }).then((res) => {
+      if (res.data.status) {
+        setRejectLoad(false);
+        showMessage("Request removed");
+        dispatch(getReqDisease());
+        setopenReject(false);
+      } else {
+        setRejectLoad(false);
+        showMessage("Invalid data");
+      }
+    });
+  };
+
+  const deleteDisease = (val) => {
+    secureAxios.post("/delete-disease", { disease: val }).then((res) => {
+      if (res.data.status) {
+        dispatch(getDisease());
+        showMessage(`${toTitleCase(val)} removed`);
+      }
+    });
+  };
+
+  useEffect(() => {
+    dispatch(getUser(token));
+    dispatch(getDisease());
+    dispatch(getReqDisease());
+  }, []); //eslint-disable-line
 
   return (
     <>
@@ -101,9 +114,11 @@ const Disease = () => {
                           <p>Disease - {reqDisease}</p>
                         </div>
                         <div className="icons">
-                          <CloseOutlined />
+                          <CloseOutlined
+                            onClick={() => handleResolve("reject", reqDisease)}
+                          />
                           <IssuesCloseOutlined
-                            onClick={() => handleResolve(reqDisease)}
+                            onClick={() => handleResolve("resolve", reqDisease)}
                           />
                           <CheckOutlined onClick={addDisease} />
                         </div>
@@ -124,7 +139,9 @@ const Disease = () => {
                     return (
                       <div className="list-content" key={i}>
                         <p>{toTitleCase(disease)}</p>
-                        <DeleteOutlined />
+                        <DeleteOutlined
+                          onClick={() => deleteDisease(disease)}
+                        />
                       </div>
                     );
                   })}
@@ -149,6 +166,15 @@ const Disease = () => {
               resolve={resolve}
               diseaseList={disease}
               closeResolve={closeResolve}
+              rejectDisease={rejectDisease}
+            />
+          )}
+          {openReject && (
+            <RejectDisease
+              resolve={resolve}
+              closeResolve={closeResolve}
+              rejectDisease={rejectDisease}
+              rejectLoad={rejectLoad}
             />
           )}
         </div>

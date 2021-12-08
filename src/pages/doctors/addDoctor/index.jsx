@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
-import { Upload, Button, message } from "antd";
+import { Upload, Button } from "antd";
 import { getDoctor } from "redux/userActions";
+import { showMessage } from "constants/constant";
 import secureAxios from "services/http";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
@@ -20,23 +21,6 @@ const AddDoctor = ({ handleCloseDialog }) => {
     setDoctorInfo(updateDetail);
   };
 
-  const success = () => {
-    message.success({
-      content: "Doctor added successfull",
-      duration: 3,
-      className: "custom-class",
-      style: {
-        display: "flex",
-        position: "fixed",
-        left: "45%",
-        top: "5vh",
-        padding: "4px 8px",
-        borderRadius: "4px",
-        gap: "5px",
-      },
-    });
-  };
-
   const boardDoctor = () => {
     const formData = new FormData();
     Object.keys(doctorInfo).forEach((key) =>
@@ -50,7 +34,7 @@ const AddDoctor = ({ handleCloseDialog }) => {
     secureAxios.post("/doctor-add", formData).then((res) => {
       if (res.data.status) {
         setLoad(false);
-        success();
+        showMessage("Doctor added successfull");
         dispatch(getDoctor());
         handleCloseDialog();
       }

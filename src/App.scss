@@ -11,6 +11,12 @@
     left: 80px;
     width: 100%;
   }
+
+  .main-loading {
+    .ant-card {
+      height: 565px;
+    }
+  }
 }
 
 h1 {
@@ -27,4 +33,16 @@ select {
   overflow: hidden;
   background: rgba(196, 196, 196, 0.5);
   color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+  .app {
+    .pages {
+      z-index: -1;
+      position: absolute;
+      top: 10%;
+      left: 15px;
+      width: 100%;
+    }
+  }
 }
