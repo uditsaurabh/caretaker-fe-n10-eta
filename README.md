@@ -93,7 +93,7 @@ Our vision is to provide basic information about someone who is facing some emer
 		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979422/readme/react-logo_aiqchy_ppt4p0.png" title="React" height="100">
 	</a>
 	<a href="https://redux.js.org/">
-		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979422/readme/react-logo_aiqchy_ppt4p0.png" title="Redux" height="100">
+		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979437/readme/redux-logo_g2vd7e_jcex50.png" title="Redux" height="100">
 	</a>
 	<a href="https://firebase.google.com/">
 		<img src="https://res.cloudinary.com/n10eta/image/upload/v1638979578/readme/firebase-logo_v8dzdj_cjreko.png" title="Firebase" height="100">
