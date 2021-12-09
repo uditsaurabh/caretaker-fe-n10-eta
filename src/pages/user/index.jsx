@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Upload, Button } from "antd";
 import { getUser } from "redux/userActions";
+import { commonUtil } from "util/commonUtils";
 import { showMessage } from "constants/constant";
-import secureAxios from "services/http";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
 import TextInput from "common/input";
@@ -26,6 +26,7 @@ const User = () => {
   };
 
   const handleSave = () => {
+    setLoad(true);
     const token = localStorage.getItem("user");
 
     const formData = new FormData();
@@ -36,8 +37,7 @@ const User = () => {
       formData.append("profile_photo", file);
     });
 
-    secureAxios.post("/updateAccountDetails", formData).then((res) => {
-      setLoad(true);
+    commonUtil("/updateAccountDetails", formData).then((res) => {
       if (res.data.status) {
         showMessage("Details updated");
         setLoad(false);

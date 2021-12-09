@@ -7,13 +7,13 @@ import { ReactComponent as Virus } from "assets/icons/bacteria.svg";
 import sidebarBackground from "assets/sidebar/sidebar.jpg";
 import "./index.scss";
 
-const Sidebar = ({ userType }) => {
+const Sidebar = ({ userType, sidebar }) => {
   const location = useLocation();
   const { pathname } = location;
   return (
     <>
       {pathname !== "/emerygencydetails" && (
-        <div className="sidebar">
+        <div className={sidebar ? "sidebar" : "sidebar toggle-menu"}>
           <div className="background">
             <img src={sidebarBackground} alt="bg" />
             <div className="icons">

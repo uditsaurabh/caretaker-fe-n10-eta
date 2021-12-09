@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Upload, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { getProfiles } from "redux/userActions";
-import secureAxios from "services/http";
 import RequestDialog from "../requestDialog";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
@@ -14,6 +13,7 @@ import {
   defaultImage,
   showMessage,
 } from "constants/constant";
+import { commonUtil } from "util/commonUtils";
 import "./index.scss";
 
 const AddProfile = ({
@@ -63,7 +63,7 @@ const AddProfile = ({
       formData.append("profile_photo", file);
     });
 
-    secureAxios.post("/create_profile", formData).then((res) => {
+    commonUtil("/create_profile", formData).then((res) => {
       if (res.data.status) {
         setLoad(false);
         showMessage("Profile added");
@@ -93,7 +93,7 @@ const AddProfile = ({
       pid: _id,
     };
 
-    secureAxios.post("/update_profile", payload).then((res) => {
+    commonUtil("/update_profile", payload).then((res) => {
       if (res.data.status) {
         setLoad(false);
         showMessage("Profile edit done");

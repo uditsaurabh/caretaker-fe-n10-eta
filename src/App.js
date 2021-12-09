@@ -17,15 +17,18 @@ import Doctors from "pages/doctors";
 import Disease from "pages/disease";
 import DoctorBoarding from "pages/doctorOnboard";
 import NotFound from "pages/notFound";
-import "./App.scss";
 import Emergency from "pages/emergency";
+import "./App.scss";
 
 const App = () => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state) => state.userReducer);
   const [isUser, setIsUser] = useState(localStorage.getItem("user"));
   const [otpLoading, setOtpLoading] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
   const { user_type } = user?.data || "";
+
+  const handleToggleSidebar = () => setSidebar((value) => !value);
 
   const checkUser = () => {
     const auth = getAuth();
@@ -67,8 +70,15 @@ const App = () => {
         />
       ) : (
         <Router>
-          <Header handleLogout={handleLogout} />
-          <Sidebar userType={user_type} />
+          <Header
+            handleLogout={handleLogout}
+            handleToggleSidebar={handleToggleSidebar}
+          />
+          <Sidebar
+            userType={user_type}
+            // handleToggleSidebar={handleToggleSidebar}
+            sidebar={sidebar}
+          />
           <div className="pages">
             {user_type ? (
               <Routes>
