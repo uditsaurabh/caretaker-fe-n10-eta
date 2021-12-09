@@ -54,8 +54,7 @@ We are living in the age of pandemics, where taking care of personal and loved o
 <!-- <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a> -->
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<!-- <a href="https://drive.google.com/file/d/1rL3K0NTI91a6QQmy0J6BE9FFQSvwDgVY/view?usp=sharing">API documentation</a> -->
+<a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1">API documentation</a>
 
 ### Backend Repo
 
