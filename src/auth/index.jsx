@@ -4,19 +4,22 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import "react-phone-number-input/style.css";
+import firebaseApp from "../firebaseConfig"; //eslint-disable-line
+import { CloseOutlined } from "@ant-design/icons";
 import PhoneInput from "react-phone-number-input";
 import LoginImage from "assets/login/landing.jpg";
+import { demoCredentials } from "constants/constant";
 import OrangeButton from "common/button";
 import TextInput from "common/input";
 import { ReactComponent as Logo } from "assets/icons/medical-device.svg";
-import firebaseApp from "../firebaseConfig"; //eslint-disable-line
+import "react-phone-number-input/style.css";
 import "./index.scss";
 
 const Login = ({ checkUser, setLoading, loading }) => {
   const [number, setNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [mobile, setMobile] = useState(true);
+  const [demo, setDemo] = useState(false);
 
   const handleChange = (node, value) => {
     if (node === "number") setNumber(value);
@@ -64,6 +67,9 @@ const Login = ({ checkUser, setLoading, loading }) => {
       .confirm(code)
       .then((result) => {
         checkUser();
+        if (demo) {
+          setDemo(false);
+        }
       })
       .catch((error) => {
         throw error;
@@ -74,8 +80,16 @@ const Login = ({ checkUser, setLoading, loading }) => {
     <div className="login">
       <div className="login-detail">
         <div className="header-logo">
-          <Logo style={{ height: "24px", width: "24px" }} />
-          <h1>Care Tracker</h1>
+          <div className="head">
+            <Logo style={{ height: "24px", width: "24px" }} />
+            <h1>Care Tracker</h1>
+          </div>
+          <OrangeButton
+            text="Dummy logins"
+            type={demo ? "orange-button disabled" : "orange-button"}
+            click={() => setDemo(true)}
+            disabled={demo}
+          />
         </div>
         <div className="login-form">
           <h2>Login</h2>
@@ -129,6 +143,21 @@ const Login = ({ checkUser, setLoading, loading }) => {
       <div className="image">
         <img src={LoginImage} alt="login_image" />
       </div>
+      {demo && (
+        <div className="demo-dialog">
+          <div className="close-icon">
+            <CloseOutlined onClick={() => setDemo(false)} />
+          </div>
+          {demoCredentials.map((item) => {
+            const { title, number, code, id } = item;
+            return (
+              <div className="dummy" key={id}>
+                <p>{title}</p> <p>{number}</p> <p>{code}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

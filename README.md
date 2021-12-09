@@ -165,9 +165,9 @@ REACT_APP_PAY_ID=<br />
 
 ## Test Credentials
 
-\_To login in the app as user use no. 9999999999 and otp 111111</br>
-\_To login in the app as doctor use no. 8888888888 and otp 222222</br>
-\_To login in the app as admin use no. 7777777777 and otp 333333</br>
+To login in the app as user use no. 9999999999 and otp 111111</br>
+To login in the app as doctor use no. 8888888888 and otp 222222</br>
+To login in the app as admin use no. 7777777777 and otp 333333</br>
 
 <!--Tools-->
 
