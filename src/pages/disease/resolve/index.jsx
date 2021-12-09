@@ -26,6 +26,8 @@ const ResolveDialog = ({
         showMessage("Merge request success");
         rejectDisease(resolve);
         closeResolve();
+      } else {
+        console.warn("Invalid data");
       }
     });
   };

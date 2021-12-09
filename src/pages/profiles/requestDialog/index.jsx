@@ -3,7 +3,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
 import { commonUtil } from "util/commonUtils";
-import { showMessage } from "constants/constant";
+import { showMessage, warnMessage } from "constants/constant";
 import "./index.scss";
 
 const RequestDialog = ({ closeRequest }) => {
@@ -23,6 +23,8 @@ const RequestDialog = ({ closeRequest }) => {
         showMessage("Request sent");
         setLoad(false);
         closeRequest();
+      } else {
+        warnMessage("Network wrror");
       }
     });
   };

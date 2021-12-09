@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "redux/userActions";
 import { commonUtil } from "util/commonUtils";
-import { showMessage } from "constants/constant";
+import { showMessage, warnMessage } from "constants/constant";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
 import TextInput from "common/input";
@@ -36,6 +36,8 @@ const User = () => {
         showMessage("Details updated");
         setLoad(false);
         history("/profiles");
+      } else {
+        warnMessage("Network wrror");
       }
     });
   };

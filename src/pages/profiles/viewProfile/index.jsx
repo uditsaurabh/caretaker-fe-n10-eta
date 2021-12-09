@@ -59,6 +59,10 @@ const ViewProfile = ({
     profile?.profile_details || "";
   const { qr_code, profile_photo } = profile || "";
 
+  let tempArray = disease && JSON.parse(JSON.stringify(disease));
+  tempArray = tempArray.replace("[", "");
+  tempArray = tempArray.replace("]", "");
+
   return (
     <div className="profile-detail">
       <div className="profile-icons">
@@ -78,7 +82,7 @@ const ViewProfile = ({
             <p>Age - {age} years</p>
             <p>Gender - {toTitleCase(gender)}</p>
             <p>Blood group - {blood_group}</p>
-            <p>Diseases - {toTitleCase(disease)}</p>
+            <p>Diseases - {toTitleCase(tempArray)}</p>
           </div>
           <div className="qr-code">
             <QrcodeOutlined />

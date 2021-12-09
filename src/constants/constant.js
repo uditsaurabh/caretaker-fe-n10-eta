@@ -45,6 +45,23 @@ export const showMessage = (type) => {
   });
 };
 
+export const warnMessage = (type) => {
+  message.warning({
+    content: type,
+    duration: 3,
+    className: "custom-class",
+    style: {
+      display: "flex",
+      position: "fixed",
+      left: "45%",
+      top: "5vh",
+      padding: "4px 8px",
+      borderRadius: "4px",
+      gap: "5px",
+    },
+  });
+};
+
 export const demoCredentials = [
   { title: "Login as", number: "Mobile", code: "OTP", id: 0 },
   { title: "User", number: "9999999999", code: "111111", id: 1 },

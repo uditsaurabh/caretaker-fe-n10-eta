@@ -4,7 +4,7 @@ import { Upload, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { getProfiles } from "redux/userActions";
 import { commonUtil } from "util/commonUtils";
-import { showMessage } from "constants/constant";
+import { showMessage, warnMessage } from "constants/constant";
 import OrangeButton from "common/button";
 import "./index.scss";
 
@@ -31,6 +31,8 @@ const AddReports = ({ closeProfile, profile }) => {
         showMessage("Reports added");
         dispatch(getProfiles(token));
         closeProfile();
+      } else {
+        warnMessage("Network wrror");
       }
     });
   };

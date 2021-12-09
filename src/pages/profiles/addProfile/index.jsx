@@ -12,6 +12,7 @@ import {
   gender,
   defaultImage,
   showMessage,
+  warnMessage,
 } from "constants/constant";
 import { commonUtil } from "util/commonUtils";
 import "./index.scss";
@@ -71,7 +72,7 @@ const AddProfile = ({
         dispatch(getProfiles(token));
       } else {
         setLoad(false);
-        showMessage("Network error");
+        warnMessage("Network error");
       }
     });
   };
