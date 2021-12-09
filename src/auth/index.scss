@@ -90,6 +90,9 @@
     border-radius: 4px;
     width: 450px;
 
+    div:nth-child(2) {
+      border-bottom: 1px solid var(--white) !important;
+    }
     .dummy {
       display: flex;
       justify-content: space-between;
@@ -99,7 +102,6 @@
         text-align: center;
       }
     }
-
     .close-icon {
       position: absolute;
       top: 2px;
