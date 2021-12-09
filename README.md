@@ -55,7 +55,7 @@ We are living in the age of pandemics, where taking care of personal and loved o
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<!-- <a href="https://drive.google.com/file/d/1rL3K0NTI91a6QQmy0J6BE9FFQSvwDgVY/view?usp=sharing">Coding Practices</a> -->
+<!-- <a href="https://drive.google.com/file/d/1rL3K0NTI91a6QQmy0J6BE9FFQSvwDgVY/view?usp=sharing">API documentation</a> -->
 
 ### Backend Repo
 
@@ -137,17 +137,17 @@ Following are the simple steps to run this project.
    ```
 2. Set environment variables
 
-REACT_APP_SERVER_URL=https://stark-island-21254.herokuapp.com/
-REACT_APP_ORG_ID=
-REACT_APP_DYTE_URL=
-REACT_APP_FIREBASE_API=
-REACT_APP_AUTH_DOMAIN=
-REACT_APP_PROJECT_ID=
-REACT_APP_STORAGE_BUCKET=
-REACT_APP_MESSAGING_SENDER_ID=
-REACT_APP_APP_ID=
-REACT_APP_MEASUREMENT_ID=
-REACT_APP_PAY_ID=
+REACT_APP_SERVER_URL=https://stark-island-21254.herokuapp.com/**
+REACT_APP_ORG_ID=**
+REACT_APP_DYTE_URL=**
+REACT_APP_FIREBASE_API=**
+REACT_APP_AUTH_DOMAIN=**
+REACT_APP_PROJECT_ID=**
+REACT_APP_STORAGE_BUCKET=**
+REACT_APP_MESSAGING_SENDER_ID=**
+REACT_APP_APP_ID=**
+REACT_APP_MEASUREMENT_ID=**
+REACT_APP_PAY_ID=\_\_
 
 3. Install NPM packages
    ```sh
