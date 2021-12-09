@@ -44,3 +44,10 @@ export const showMessage = (type) => {
     },
   });
 };
+
+export const demoCredentials = [
+  { title: "Login as", number: "Mobile", code: "OTP", id: 0 },
+  { title: "User", number: "9999999999", code: "111111", id: 1 },
+  { title: "Doctor", number: "8888888888", code: "222222", id: 2 },
+  { title: "Admin", number: "7777777777", code: "333333", id: 3 },
+];

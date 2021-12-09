@@ -50,11 +50,11 @@ We are living in the age of pandemics, where taking care of personal and loved o
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1U1ArjVvM7aBLXzaLXK_ItxYeRzZRy5w8/view?usp=sharing">One Pager</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1">API documentation</a>
 
 <!-- <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a> -->
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1">API documentation</a>
 
 ### Backend Repo
 
@@ -165,15 +165,15 @@ REACT_APP_PAY_ID=<br />
 
 ## Test Credentials
 
-_To login in the app as user use no. 9999999999 and otp 111111_
-_To login in the app as doctor use no. 8888888888 and otp 222222_  
-_To login in the app as admin use no. 7777777777 and otp 333333_
+To login in the app as user use no. 9999999999 and otp 111111</br>
+To login in the app as doctor use no. 8888888888 and otp 222222</br>
+To login in the app as admin use no. 7777777777 and otp 333333</br>
 
 <!--Tools-->
 
 ## Tools and Libraries
 
-- [Redux-Tool-Kit] - State Management
+- [Redux] - State Management
 - [Jest] - Unit testing
 - [React-testing-Library] - Integration testing
 - [Dyte] - Call SDK
