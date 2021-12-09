@@ -63,22 +63,30 @@ const App = () => {
   return (
     <div className="app">
       {!isUser ? (
-        <Login
-          checkUser={checkUser}
-          setLoading={setOtpLoading}
-          loading={otpLoading}
-        />
+        <>
+          <Router>
+            <Routes>
+              <Route path="/emerygencydetails" element={<Emergency />} />
+              <Route
+                path="/"
+                element={
+                  <Login
+                    checkUser={checkUser}
+                    setLoading={setOtpLoading}
+                    loading={otpLoading}
+                  />
+                }
+              />
+            </Routes>
+          </Router>
+        </>
       ) : (
         <Router>
           <Header
             handleLogout={handleLogout}
             handleToggleSidebar={handleToggleSidebar}
           />
-          <Sidebar
-            userType={user_type}
-            // handleToggleSidebar={handleToggleSidebar}
-            sidebar={sidebar}
-          />
+          <Sidebar userType={user_type} sidebar={sidebar} />
           <div className="pages">
             {user_type ? (
               <Routes>
