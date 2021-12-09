@@ -137,17 +137,17 @@ Following are the simple steps to run this project.
    ```
 2. Set environment variables
 
-REACT_APP_SERVER_URL=https://stark-island-21254.herokuapp.com/**
-REACT_APP_ORG_ID=**
-REACT_APP_DYTE_URL=**
-REACT_APP_FIREBASE_API=**
-REACT_APP_AUTH_DOMAIN=**
-REACT_APP_PROJECT_ID=**
-REACT_APP_STORAGE_BUCKET=**
-REACT_APP_MESSAGING_SENDER_ID=**
-REACT_APP_APP_ID=**
-REACT_APP_MEASUREMENT_ID=**
-REACT_APP_PAY_ID=\_\_
+REACT_APP_SERVER_URL=https://stark-island-21254.herokuapp.com/<br />
+REACT_APP_ORG_ID=<br />
+REACT_APP_DYTE_URL=<br />
+REACT_APP_FIREBASE_API=<br />
+REACT_APP_AUTH_DOMAIN=<br />
+REACT_APP_PROJECT_ID=<br />
+REACT_APP_STORAGE_BUCKET=<br />
+REACT_APP_MESSAGING_SENDER_ID=<br />
+REACT_APP_APP_ID=<br />
+REACT_APP_MEASUREMENT_ID=<br />
+REACT_APP_PAY_ID=<br />
 
 3. Install NPM packages
    ```sh
