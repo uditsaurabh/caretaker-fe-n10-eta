@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
 import { Upload, Button } from "antd";
 import { getDoctor } from "redux/userActions";
+import { commonUtil } from "util/commonUtils";
 import { showMessage } from "constants/constant";
-import secureAxios from "services/http";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
 import "./index.scss";
@@ -31,7 +31,7 @@ const AddDoctor = ({ handleCloseDialog }) => {
     });
 
     setLoad(true);
-    secureAxios.post("/doctor-add", formData).then((res) => {
+    commonUtil("/doctor-add", formData).then((res) => {
       if (res.data.status) {
         setLoad(false);
         showMessage("Doctor added successfull");

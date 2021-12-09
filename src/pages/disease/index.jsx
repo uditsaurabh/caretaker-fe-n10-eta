@@ -7,7 +7,7 @@ import {
   IssuesCloseOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import secureAxios from "services/http";
+import { commonUtil } from "util/commonUtils";
 import { toTitleCase, showMessage } from "constants/constant";
 import CommonCard from "common/card";
 import TextInput from "common/input";
@@ -39,29 +39,10 @@ const Disease = () => {
     setResolve(val);
   };
 
-  const closeResolve = () => {
-    setOpen(false);
-    setopenReject(false);
-  };
-
-  const addDisease = () => {
-    setLoad(true);
-    secureAxios.post("/add-disease", { disease: diseaseInput }).then((res) => {
-      if (res.data.status) {
-        setLoad(false);
-        showMessage("Disease added successfully");
-        dispatch(getDisease());
-        setDiseaseInput("");
-      } else {
-        setLoad(false);
-        showMessage("Invalid data");
-      }
-    });
-  };
-
   const rejectDisease = (val) => {
     setRejectLoad(true);
-    secureAxios.post("/delete-req-disease", { reqDisease: val }).then((res) => {
+    const payload = { reqDisease: val };
+    commonUtil("/delete-req-disease", payload).then((res) => {
       if (res.data.status) {
         setRejectLoad(false);
         showMessage("Request removed");
@@ -74,13 +55,35 @@ const Disease = () => {
     });
   };
 
+  const addDisease = () => {
+    setLoad(true);
+    const payload = { disease: diseaseInput };
+    commonUtil("/add-disease", payload).then((res) => {
+      if (res.data.status) {
+        setLoad(false);
+        showMessage("Disease added successfully");
+        dispatch(getDisease());
+        setDiseaseInput("");
+      } else {
+        setLoad(false);
+        showMessage("Invalid data");
+      }
+    });
+  };
+
   const deleteDisease = (val) => {
-    secureAxios.post("/delete-disease", { disease: val }).then((res) => {
+    const payload = { disease: val };
+    commonUtil("/delete-disease", payload).then((res) => {
       if (res.data.status) {
         dispatch(getDisease());
         showMessage(`${toTitleCase(val)} removed`);
       }
     });
+  };
+
+  const closeResolve = () => {
+    setOpen(false);
+    setopenReject(false);
   };
 
   useEffect(() => {

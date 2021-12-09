@@ -7,8 +7,8 @@ import {
   DeleteOutlined,
   QrcodeOutlined,
 } from "@ant-design/icons";
-import secureAxios from "services/http";
 import { getProfiles } from "redux/userActions";
+import { commonUtil } from "util/commonUtils";
 import { defaultImage, toTitleCase, showMessage } from "constants/constant";
 import OrangeButton from "common/button/index";
 
@@ -46,7 +46,7 @@ const ViewProfile = ({
   const deleteProfile = () => {
     const { _id } = profile;
     const payload = { access_token: token, profile_id: _id };
-    secureAxios.post("/delete_profile", payload).then((res) => {
+    commonUtil("/delete_profile", payload).then((res) => {
       if (res.data.status) {
         dispatch(getProfiles(token));
         setProfile(userProfiles[0]);

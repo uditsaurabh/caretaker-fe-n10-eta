@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
-import secureAxios from "services/http";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
+import { commonUtil } from "util/commonUtils";
 import { showMessage } from "constants/constant";
 import "./index.scss";
 
@@ -18,7 +18,7 @@ const RequestDialog = ({ closeRequest }) => {
 
   const requestDisease = () => {
     setLoad(true);
-    secureAxios.post("/add-req-disease", details).then((res) => {
+    commonUtil("/add-req-disease", details).then((res) => {
       if (res.data.status) {
         showMessage("Request sent");
         setLoad(false);

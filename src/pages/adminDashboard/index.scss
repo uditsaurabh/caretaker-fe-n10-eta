@@ -66,14 +66,15 @@
   }
 }
 
-@media (max-width: 470px) {
+@media (max-width: 500px) {
   .admin-container {
-    width: 170% !important;
-    .admin-content {
-      .stats {
-        .stats-data {
-          width: 100px !important;
-        }
+    width: 100% !important;
+  }
+
+  .admin-content {
+    .stats {
+      .stats-data {
+        width: 130px !important;
       }
     }
   }

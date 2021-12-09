@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DyteMeeting } from "dyte-client";
 import { getUser } from "redux/userActions";
-import secureAxios from "services/http";
+import { commonUtil } from "util/commonUtils";
 import createroom from "services/createRoom";
 import OrangeButton from "common/button";
 import CommonCard from "common/card";
@@ -15,7 +15,6 @@ const DoctorDashboard = () => {
   const [meetingId, setMeetingId] = useState("");
   const [roomName, setRoomName] = useState("");
   const [authToken, setAuthToken] = useState("");
-  console.log(meetingId, roomName, _id);
 
   const joinCall = () => {
     if (meetingId) {
@@ -47,11 +46,9 @@ const DoctorDashboard = () => {
       meetingId: meetId,
       roomName: room,
     };
-    secureAxios
+    commonUtil
       .post("/doctor_meeting_details", payload)
-      .then((res) => {
-        // console.log(res);
-      })
+      .then(() => {})
       .catch((error) => {
         throw error;
       });

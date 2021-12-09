@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { toTitleCase } from "constants/constant";
 import { useLocation } from "react-router-dom";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, MenuOutlined } from "@ant-design/icons";
 import "./index.scss";
 
-const Header = ({ handleLogout }) => {
+const Header = ({ handleLogout, handleToggleSidebar }) => {
   const [open, setOpen] = useState(false);
   const container = useRef(false);
   const location = useLocation();
@@ -25,7 +25,10 @@ const Header = ({ handleLogout }) => {
     <>
       {pathName !== "emerygencydetails" && (
         <div className="header">
-          <p>{pathName ? toTitleCase(pathName) : "Dashboard"}</p>
+          <div className="left-icons">
+            <MenuOutlined onClick={handleToggleSidebar} />
+            <p>{pathName ? toTitleCase(pathName) : "Dashboard"}</p>
+          </div>
           <div className="container" ref={container}>
             <div onClick={() => setOpen((open) => !open)}>
               <UserOutlined />

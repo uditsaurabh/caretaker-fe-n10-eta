@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Upload, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { getProfiles } from "redux/userActions";
-import secureAxios from "services/http";
+import { commonUtil } from "util/commonUtils";
 import { showMessage } from "constants/constant";
 import OrangeButton from "common/button";
 import "./index.scss";
@@ -25,7 +25,7 @@ const AddReports = ({ closeProfile, profile }) => {
       formData.append("reports", file);
     });
 
-    secureAxios.post("/upload_report", formData).then((res) => {
+    commonUtil("/upload_report", formData).then((res) => {
       if (res.data.status) {
         setLoad(false);
         showMessage("Reports added");
