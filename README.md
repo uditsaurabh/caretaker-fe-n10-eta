@@ -173,7 +173,7 @@ REACT_APP_PAY_ID=<br />
 
 ## Tools and Libraries
 
-- [Redux-Tool-Kit] - State Management
+- [Redux] - State Management
 - [Jest] - Unit testing
 - [React-testing-Library] - Integration testing
 - [Dyte] - Call SDK
