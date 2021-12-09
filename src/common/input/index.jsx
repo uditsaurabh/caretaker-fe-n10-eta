@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "antd";
 import "./index.scss";
 
-function TextInput({
+const TextInput = ({
   change,
   size,
   placeholder,
@@ -10,7 +10,8 @@ function TextInput({
   value,
   color,
   disabled,
-}) {
+  required,
+}) => {
   return (
     <>
       <Input
@@ -21,8 +22,9 @@ function TextInput({
         value={value}
         className={color}
         disabled={disabled}
+        required={required ? required : false}
       />
     </>
   );
-}
+};
 export default TextInput;

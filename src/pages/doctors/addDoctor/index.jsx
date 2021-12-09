@@ -4,7 +4,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import { Upload, Button } from "antd";
 import { getDoctor } from "redux/userActions";
 import { commonUtil } from "util/commonUtils";
-import { showMessage } from "constants/constant";
+import { showMessage, warnMessage } from "constants/constant";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
 import "./index.scss";
@@ -21,7 +21,8 @@ const AddDoctor = ({ handleCloseDialog }) => {
     setDoctorInfo(updateDetail);
   };
 
-  const boardDoctor = () => {
+  const boardDoctor = (e) => {
+    e.preventDefault();
     const formData = new FormData();
     Object.keys(doctorInfo).forEach((key) =>
       formData.append(key, doctorInfo[key])
@@ -30,15 +31,19 @@ const AddDoctor = ({ handleCloseDialog }) => {
       formData.append("doctorProfilePhoto", file);
     });
 
-    setLoad(true);
-    commonUtil("/doctor-add", formData).then((res) => {
-      if (res.data.status) {
-        setLoad(false);
-        showMessage("Doctor added successfull");
-        dispatch(getDoctor());
-        handleCloseDialog();
-      }
-    });
+    if (Object.keys(doctorInfo).length >= 5 && imageList) {
+      setLoad(true);
+      commonUtil("/doctor-add", formData).then((res) => {
+        if (res.data.status) {
+          setLoad(false);
+          showMessage("Doctor added successfull");
+          dispatch(getDoctor());
+          handleCloseDialog();
+        }
+      });
+    } else {
+      warnMessage("Please fill the fields");
+    }
   };
 
   const imageProps = {
@@ -71,30 +76,35 @@ const AddDoctor = ({ handleCloseDialog }) => {
           color="grey"
           value={doctorInfo?.user_name}
           change={(e) => handleChange("user_name", e.target.value)}
+          required={true}
         />
         <TextInput
           placeholder="Expertise"
           color="grey"
           value={doctorInfo?.dpctor_expertise}
           change={(e) => handleChange("doctor_expertise", e.target.value)}
+          required={true}
         />
         <TextInput
           placeholder="Experience"
           color="grey"
           value={doctorInfo?.doctor_experience}
           change={(e) => handleChange("doctor_experience", e.target.value)}
+          required={true}
         />
         <TextInput
           placeholder="Fees"
           color="grey"
           value={doctorInfo?.doctor_fees}
           change={(e) => handleChange("doctor_fees", e.target.value)}
+          required={true}
         />
         <TextInput
           placeholder="Mobile"
           color="grey"
           value={doctorInfo?.phone_number}
           change={(e) => handleChange("phone_number", e.target.value)}
+          required={true}
         />
         <Upload {...imageProps}>
           <Button className="orange-button">Upload image</Button>

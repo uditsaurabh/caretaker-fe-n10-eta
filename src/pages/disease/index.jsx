@@ -8,7 +8,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import { commonUtil } from "util/commonUtils";
-import { toTitleCase, showMessage } from "constants/constant";
+import { toTitleCase, showMessage, warnMessage } from "constants/constant";
 import CommonCard from "common/card";
 import TextInput from "common/input";
 import OrangeButton from "common/button";
@@ -50,7 +50,7 @@ const Disease = () => {
         setopenReject(false);
       } else {
         setRejectLoad(false);
-        showMessage("Invalid data");
+        warnMessage("Invalid data");
       }
     });
   };
@@ -66,7 +66,7 @@ const Disease = () => {
         setDiseaseInput("");
       } else {
         setLoad(false);
-        showMessage("Invalid data");
+        warnMessage("Invalid data");
       }
     });
   };
@@ -77,6 +77,8 @@ const Disease = () => {
       if (res.data.status) {
         dispatch(getDisease());
         showMessage(`${toTitleCase(val)} removed`);
+      } else {
+        warnMessage("Invalid data");
       }
     });
   };

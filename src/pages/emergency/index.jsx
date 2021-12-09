@@ -10,9 +10,19 @@ const Emergency = () => {
   const dispatch = useDispatch();
   const search = useLocation().search;
   const { emergency, loading } = useSelector((state) => state.userReducer);
+
   const { age, blood_group, emergency_contact, name, disease } =
     emergency?.profile_details || "";
   const pid = new URLSearchParams(search).get("pid");
+
+  let tempArray = "";
+  if (disease) {
+    tempArray = disease && JSON.parse(JSON.stringify(disease));
+    tempArray = tempArray.replace("[", "");
+    tempArray = tempArray.replace("]", "");
+  }
+
+  const telLink = `tel:${emergency_contact}`;
 
   useEffect(() => {
     dispatch(getEmergency(pid));
@@ -43,10 +53,13 @@ const Emergency = () => {
                   Blood group - <b>{blood_group}</b>
                 </p>
                 <p>
-                  Emergency contact - <b>{emergency_contact}</b>
+                  Emergency contact -{" "}
+                  <b>
+                    <a href={telLink}>{emergency_contact}</a>
+                  </b>
                 </p>
                 <p>
-                  Pre known diseases - <b>{toTitleCase(disease)}</b>
+                  Pre known diseases - <b>{toTitleCase(tempArray)}</b>
                 </p>
               </div>
             </div>
