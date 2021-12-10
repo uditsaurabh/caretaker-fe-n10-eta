@@ -57,7 +57,7 @@ We are living in the age of pandemics, where taking care of personal and loved o
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1">API documentation</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.figma.com/proto/gwX1uTPgceU8ou25OU2cwW/dashboardModule?node-id=485%3A55&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=74%3A86">Wireframes</a>
+<a href="https://www.figma.com/proto/gwX1uTPgceU8ou25OU2cwW/dashboardModule?node-id=74%3A86&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=74%3A86">Wireframes</a>
 
 ### Backend Repo
 
