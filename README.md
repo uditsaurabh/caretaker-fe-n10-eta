@@ -49,15 +49,14 @@ We are living in the age of pandemics, where taking care of personal and loved o
 
 ### Artefacts
 
-<a href="https://drive.google.com/file/d/1lKdXfwmdJWLH41D0jVP6QOyvKEzCW4zr/view">PRD</a>
+<a href="https://drive.google.com/file/d/1unWSM2pNwCFSErJVX_6IkvcM5oiOUhWK/view?usp=sharing">PRD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1nZJF6_Xssem140UtKJgr4g48XMWpcQtQ/view?usp=sharing">HLD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1U1ArjVvM7aBLXzaLXK_ItxYeRzZRy5w8/view?usp=sharing">One Pager</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1">API documentation</a>
-
-<!-- <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a> -->
+<a href="https://www.figma.com/proto/gwX1uTPgceU8ou25OU2cwW/dashboardModule?node-id=485%3A55&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=74%3A86">Wireframes</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 
