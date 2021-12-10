@@ -96,6 +96,7 @@
     .dummy {
       display: flex;
       justify-content: space-between;
+      width: 100%;
 
       p {
         width: 100%;
@@ -124,6 +125,10 @@
     .login-form {
       margin-top: 20% !important;
     }
+
+    .demo-dialog {
+      left: 20%;
+    }
   }
 }
 
@@ -142,6 +147,11 @@
       img {
         display: none;
       }
+    }
+    .demo-dialog {
+      left: 8%;
+      width: 75%;
+      padding: 30px 15px;
     }
   }
 }
