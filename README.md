@@ -46,7 +46,7 @@ We are living in the age of pandemics, where taking care of personal and loved o
 
 <a href="https://drive.google.com/file/d/1lKdXfwmdJWLH41D0jVP6QOyvKEzCW4zr/view">PRD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://drive.google.com/file/d/1Md6oDJUflZffX13rnuXd4OpIfV62YRZm/view?usp=sharing">HLD</a>
+<a href="https://drive.google.com/file/d/1nZJF6_Xssem140UtKJgr4g48XMWpcQtQ/view?usp=sharing">HLD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1U1ArjVvM7aBLXzaLXK_ItxYeRzZRy5w8/view?usp=sharing">One Pager</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
