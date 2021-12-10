@@ -40,7 +40,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]] -->
 <p align="center">
-    <img src="https://res.cloudinary.com/n10eta/image/upload/v1639121632/readme/dashboard_l3lxdj.png" alt="Logo" width="400" height="200" >
+    <img src="https://res.cloudinary.com/n10eta/image/upload/v1639121632/readme/dashboard_l3lxdj.png" alt="Logo" width="500" height="350" >
 </p>
 (https://caretracker.netlify.app/)
 
