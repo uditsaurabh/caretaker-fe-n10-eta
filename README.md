@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="https://res.cloudinary.com/n10eta/image/upload/v1639114980/readme/UntitledcareTracker_1_lrqwmk.png" alt="Logo" width="120" >
+    <img src="https://res.cloudinary.com/n10eta/image/upload/v1639114980/readme/UntitledcareTracker_1_lrqwmk.png" alt="Logo" width="400" height="200" >
 </p>
 
 <h1 align="center">Care Tracker Frontend</h1>
@@ -38,23 +38,26 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://caretracker.netlify.app/)
+<!-- [![Product Name Screen Shot][product-screenshot]] -->
+<a href="https://caretracker.netlify.app/">
+<p align="center">
+    <img src="https://res.cloudinary.com/n10eta/image/upload/v1639121632/readme/dashboard_l3lxdj.png" alt="Logo" width="650" height="350" >
+</p>
+</a>
 
 We are living in the age of pandemics, where taking care of personal and loved ones health is the most important. When it comes to storing and searching different medical reports physically in our home is really a difficult task. With care tracker, we are providing an application where you can store your reports in one place and track your health on the basis of these reports. We are also providing different features like doctor consultation, the emergency feature which can be a great help during some emergencies.
 
 ### Artefacts
 
-<a href="https://drive.google.com/file/d/1lKdXfwmdJWLH41D0jVP6QOyvKEzCW4zr/view">PRD</a>
+<a href="https://drive.google.com/file/d/1unWSM2pNwCFSErJVX_6IkvcM5oiOUhWK/view?usp=sharing" target="_blank">PRD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://drive.google.com/file/d/1Md6oDJUflZffX13rnuXd4OpIfV62YRZm/view?usp=sharing">HLD</a>
+<a href="https://drive.google.com/file/d/1nZJF6_Xssem140UtKJgr4g48XMWpcQtQ/view?usp=sharing" target="_blank">HLD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://drive.google.com/file/d/1U1ArjVvM7aBLXzaLXK_ItxYeRzZRy5w8/view?usp=sharing">One Pager</a>
+<a href="https://drive.google.com/file/d/1U1ArjVvM7aBLXzaLXK_ItxYeRzZRy5w8/view?usp=sharing" target="_blank">One Pager</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1">API documentation</a>
-
-<!-- <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a> -->
-
+<a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1" target="_blank">API documentation</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.figma.com/proto/gwX1uTPgceU8ou25OU2cwW/dashboardModule?node-id=74%3A86&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=74%3A86" target="_blank">Wireframes</a>
 
 ### Backend Repo
 
