@@ -39,10 +39,11 @@
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]] -->
+<a href="https://caretracker.netlify.app/">
 <p align="center">
     <img src="https://res.cloudinary.com/n10eta/image/upload/v1639121632/readme/dashboard_l3lxdj.png" alt="Logo" width="650" height="350" >
 </p>
-(https://caretracker.netlify.app/)
+</a>
 
 We are living in the age of pandemics, where taking care of personal and loved ones health is the most important. When it comes to storing and searching different medical reports physically in our home is really a difficult task. With care tracker, we are providing an application where you can store your reports in one place and track your health on the basis of these reports. We are also providing different features like doctor consultation, the emergency feature which can be a great help during some emergencies.
 
