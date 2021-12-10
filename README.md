@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="https://res.cloudinary.com/n10eta/image/upload/v1638979237/readme/UntitledcareTracker_sskm5p.png" alt="Logo" width="120" >
+    <img src="https://res.cloudinary.com/n10eta/image/upload/v1639114980/readme/UntitledcareTracker_1_lrqwmk.png" alt="Logo" width="120" >
 </p>
 
 <h1 align="center">Care Tracker Frontend</h1>
