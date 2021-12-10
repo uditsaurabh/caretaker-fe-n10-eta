@@ -58,6 +58,8 @@ We are living in the age of pandemics, where taking care of personal and loved o
 <a href="https://app.swaggerhub.com/apis/akshayawasthi3/CareTracker/0.1" target="_blank">API documentation</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.figma.com/proto/gwX1uTPgceU8ou25OU2cwW/dashboardModule?node-id=74%3A86&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=74%3A86" target="_blank">Wireframes</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1rUWscpGuRFJGYplGDcJ7Udd65ZE2D96n/view?usp=sharing" target="_blank">Coding practices</a>
 
 ### Backend Repo
 
@@ -65,7 +67,7 @@ We are living in the age of pandemics, where taking care of personal and loved o
 
 **Mission:**
 
-To empower everyone to take health seriously and can track their health ease, as we all know health is wealth.
+To empower everyone to take health seriously and can track their health with ease, as we all know health is wealth.
 
 **Vision:**
 
@@ -73,17 +75,17 @@ Our vision is to provide basic information about someone who is facing some emer
 
 **Goals:**
 
-- Simple solutions for the problems.
-- Help the people in need.
-- To make the proper awareness about tracking health.
+-   Simple solutions for the problems.
+-   Help the people in need.
+-   To make the proper awareness about tracking health.
 
 **Features:**
 
-- A dashboard to track the heath on the basis of reports uploaded.
-- Consultation with doctor.
-- Generate QR code for some emergency.
-- Simple and consistent UI.
-- Multiple Payment Option.
+-   A dashboard to track the heath on the basis of reports uploaded.
+-   Consultation with doctor.
+-   Generate QR code for some emergency.
+-   Simple and consistent UI.
+-   Multiple Payment Option.
 
 ### Built With
 
@@ -120,23 +122,23 @@ Following are the simple steps to run this project.
 
 ### Prerequisites
 
-- npm
+-   npm
 
-  ```sh
-  npm install npm@latest -g
-  ```
+    ```sh
+    npm install npm@latest -g
+    ```
 
-- firebase
-  ```sh
-  npm install firebase -g
-  ```
+-   firebase
+    ```sh
+    npm install firebase -g
+    ```
 
 ### Installation
 
 1. Clone the repo
-   ```sh
-   git clonehttps://github.com/pesto-students/caretaker-fe-n10-eta.git careTracker-fe
-   ```
+    ```sh
+    git clonehttps://github.com/pesto-students/caretaker-fe-n10-eta.git careTracker-fe
+    ```
 2. Set environment variables
 
 REACT_APP_SERVER_URL=https://stark-island-21254.herokuapp.com/<br />
@@ -152,19 +154,19 @@ REACT_APP_MEASUREMENT_ID=<br />
 REACT_APP_PAY_ID=<br />
 
 3. Install NPM packages
-   ```sh
-   cd caretaker-fe-n10-eta && npm install
-   ```
+    ```sh
+    cd caretaker-fe-n10-eta && npm install
+    ```
 4. Run
-   ```sh
-   npm start
-   ```
+    ```sh
+    npm start
+    ```
 5. Open http://localhost:3000 to view it in the browser
 
 6. Run Test cases
-   ```sh
-   npm test
-   ```
+    ```sh
+    npm test
+    ```
 
 ## Test Credentials
 
@@ -176,13 +178,13 @@ To login in the app as admin use no. 7777777777 and otp 333333</br>
 
 ## Tools and Libraries
 
-- [Redux] - State Management
-- [Jest] - Unit testing
-- [React-testing-Library] - Integration testing
-- [Dyte] - Call SDK
-- [Billboard] - Charts
-- [Prettier] - Automatic code formatting
-- [AntDesign] - UI library
+-   [Redux] - State Management
+-   [Jest] - Unit testing
+-   [React-testing-Library] - Integration testing
+-   [Dyte] - Call SDK
+-   [Billboard] - Charts
+-   [Prettier] - Automatic code formatting
+-   [AntDesign] - UI library
 
 <!-- Contributors -->
 
@@ -193,5 +195,3 @@ Akshay Awasthi - [GiHub](https://github.com/akshayawasthi3) - [Email](mailto:aks
 Kapil Harode - [GiHub](https://github.com/kapilharode) - [Email](mailto:kapilharodek4@gmail.com)
 
 Dinesh Yadav - [GiHub](https://github.com/dinesh0191) - [Email](mailto:dinesh0191@gmail.com)
-
-<!-- [product-screenshot]: https://res.cloudinary.com/emarat/image/upload/v1631802213/homepage-screenshot_n2dxwk.png -->
