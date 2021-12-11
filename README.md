@@ -59,7 +59,7 @@ We are living in the age of pandemics, where taking care of personal and loved o
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.figma.com/proto/gwX1uTPgceU8ou25OU2cwW/dashboardModule?node-id=74%3A86&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=74%3A86" target="_blank">Wireframes</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://drive.google.com/file/d/1rUWscpGuRFJGYplGDcJ7Udd65ZE2D96n/view?usp=sharing" target="_blank">Coding practices</a>
+<a href="https://drive.google.com/file/d/1iAVJA99gUBXHIXYDBgcADjMwx7UJM8MP/view?usp=sharing" target="_blank">Coding practices</a>
 
 ### Backend Repo
 
