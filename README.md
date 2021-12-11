@@ -45,7 +45,7 @@
 </p>
 </a>
 
-We are living in the age of pandemics, where taking care of personal and loved ones health is the most important. When it comes to storing and searching different medical reports physically in our home is really a difficult task. With care tracker, we are providing an application where you can store your reports in one place and track your health on the basis of these reports. We are also providing different features like doctor consultation, the emergency feature which can be a great help during some emergencies.
+We are living in the age of pandemics, where taking care of personal and loved ones health is the most important. When it comes to storing and searching different medical reports physically in our home is really a difficult task. With care tracker, we are providing an application where you can store your reports in one place and track your health on the basis of these reports. We are also providing different features like doctor consultation, the emergency feature which can be a great help during some emergencies and We are doing Optical Character Recognition(OCR) to fetch text from the reports. With the Help of OCR we are fetching value of RBC, WBC and haemoglobin from the blood report.
 
 ### Artefacts
 
