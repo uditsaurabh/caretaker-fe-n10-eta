@@ -22,14 +22,13 @@ import './App.scss';
 
 const App = () => {
 	const dispatch = useDispatch();
-	const { user, token } = useSelector((state) => state.userReducer);
+	const { user } = useSelector((state) => state.userReducer);
 	const [isUser, setIsUser] = useState(localStorage.getItem('user'));
 	const [otpLoading, setOtpLoading] = useState(false);
 	const [sidebar, setSidebar] = useState(false);
 	const { user_type } = user?.data || '';
 
 	const handleToggleSidebar = () => setSidebar((value) => !value);
-	console.log(user);
 
 	const checkUser = () => {
 		const auth = getAuth();
@@ -57,10 +56,6 @@ const App = () => {
 				throw error;
 			});
 	};
-
-	useEffect(() => {
-		dispatch(getUser(token));
-	}, []); //eslint-disable-line
 
 	return (
 		<div className="app">
