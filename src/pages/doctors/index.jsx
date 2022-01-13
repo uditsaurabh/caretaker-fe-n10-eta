@@ -53,7 +53,7 @@ const Doctors = ({ boarding }) => {
 			createroom
 				.post(`/meetings/${meetingId}/participant`, {
 					userDetails: {
-						name: user_name,
+						name: 'user',
 					},
 					clientSpecificId: phone_number,
 					roleName: 'participant',
