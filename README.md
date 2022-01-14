@@ -90,6 +90,7 @@ We tried to use a completely modern tech stack while testing out some new techno
 
 - [Ant design](https://ant.design/)
 - [Axios](https://axios-http.com/docs/intro)
+- [React](https://reactjs.org/)
 
 <br/>
 
