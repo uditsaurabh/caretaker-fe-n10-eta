@@ -18,7 +18,7 @@ import PreLoader from 'common/loader';
 import AddDoctor from './addDoctor';
 import './index.scss';
 
-const Doctors = ({ boarding }) => {
+const Doctors = ({ boarding, userType }) => {
 	const dispatch = useDispatch();
 	const { doctor, loading, token, user } = useSelector(
 		(state) => state.userReducer
@@ -181,6 +181,8 @@ const Doctors = ({ boarding }) => {
 	} = openDoctor || '';
 
 	const doctorProfiles = doctorList ? doctorList : doctor;
+	const { user_type } = user?.data || '';
+
 	return (
 		<>
 			{loading ? (
@@ -194,19 +196,28 @@ const Doctors = ({ boarding }) => {
 					<CommonCard>
 						<div className="doctor-list">
 							<div className="doc-top">
-								<div className="search-bar">
-									<TextInput
-										placeholder="Search doctor..."
-										value={query}
-										change={(e) =>
-											updateInput(e.target.value)
-										}
-									/>
-									<SearchOutlined />
-								</div>
+								{user_type === 'user' && (
+									<div className="search-bar">
+										<TextInput
+											placeholder="Search doctor..."
+											value={query}
+											change={(e) =>
+												updateInput(e.target.value)
+											}
+										/>
+										<SearchOutlined />
+									</div>
+								)}
 								{boarding && (
-									<div className="add-doc">
+									<div
+										className={
+											user_type === 'user'
+												? 'add-doc'
+												: 'add'
+										}
+									>
 										<UserAddOutlined
+											className="add-icon"
 											onClick={() => setAddDoctor(true)}
 										/>
 									</div>
